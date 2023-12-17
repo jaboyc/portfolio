@@ -364,11 +364,7 @@ export default function Home() {
               with innovation in every project I undertake.
             </p>
             <div className="flex flex-wrap gap-4 items-center">
-              <a
-                href="/Resume.pdf"
-                download="Jake Boychenko's Resume"
-                target="_blank"
-              >
+              <a href="/JakeBoychenkoResume.pdf" target="_blank">
                 <button className="flex bg-primary rounded-xl px-3 py-2 gap-2 items-center transition hover:brightness-110 hover:scale-[101%]">
                   <FontAwesomeIcon height={16} icon={faFile} color="black" />
                   <p className="button-text text-black">Download Resume</p>
