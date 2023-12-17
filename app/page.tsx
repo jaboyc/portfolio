@@ -243,6 +243,62 @@ function getResume(): Resume {
         ),
       },
     ],
+    [
+      {
+        id: 'pangiam',
+        name: 'Pangiam',
+        title: 'Mid-level Software Engineer',
+        startTime: 'August 2023',
+        endTime: 'Present',
+        experiences: [
+          'Involved in the enhancement and maintenance of mission-critical government applications.',
+          'Utilize Java EJB, Struts, and JSP in full-stack development.',
+          'Collaborate in a cross-functional team, adhering to agile methodologies.',
+        ],
+        skillIds: ['java', 'struts', 'sql'],
+        renderableData: new ImageRenderableData(
+          '/pangiam_logo.png',
+          'Pangiam Logo',
+        ),
+      },
+      {
+        id: 'brightspot',
+        name: 'Brightspot',
+        title: 'Software Engineer II',
+        startTime: 'June 2021',
+        endTime: 'May 2023',
+        experiences: [
+          'Led backend development and data migration for over 5 enterprise projects, analyzing and transitioning various data structures (SQL, JSON) to our platform.',
+          'Customized CMS backend, including Java modifications, custom API creation, and integration with external services (AWS, Getty, Google Analytics).',
+          'Managed full release cycle, from lower environment to production, along with configuration and health monitoring using Kubernetes.',
+          'Mentored a summer intern, focusing on technical skill enhancement and career development.',
+        ],
+        skillIds: ['java', 'aws', 'sql', 'docker'],
+        renderableData: new ImageRenderableData(
+          '/brightspot_logo.jpg',
+          'Brightspot Logo',
+        ),
+      },
+      {
+        id: 'jlogical',
+        name: 'JLogical Apps',
+        title: 'Freelance Mobile Developer',
+        startTime: 'August 2020',
+        endTime: 'Present',
+        experiences: [
+          'Built a side-business specializing in full-stack Flutter mobile application development.',
+          'Seamlessly integrated Flutter with Unity and Firebase to deliver comprehensive app solutions.',
+          'Innovated with Flood, a custom-built Flutter framework designed to streamline and enhance the app development process.',
+          'Collaborated with a mentoree in leading the development of applications, instilling best practices like Test-Driven Development (TDD) and Agile methodologies.',
+          'Maintained long-term client relationships, with multiple satisfied clients and the successful release of 4 full-stack Flutter applications.',
+        ],
+        skillIds: ['flutter', 'unity', 'firebase', 'appwrite'],
+        renderableData: new ImageRenderableData(
+          '/jlogical_logo.png',
+          'JLogical Logo',
+        ),
+      },
+    ],
   );
 }
 
@@ -252,7 +308,7 @@ export default function Home() {
     <main>
       <div className="flex flex-col gap-2">
         <div className="sticky top-0 z-[100] flex bg-background px-16 py-6 gap-6 justify-center">
-          <h5 className="text-primary text-[28px] transition hover:brightness-[120%]">
+          <h5 className="text-primary text-center text-[22px] md:text-[28px] transition hover:brightness-[120%]">
             <a className="no-underline" href="#">
               JAKE BOYCHENKO
             </a>
@@ -344,11 +400,11 @@ export default function Home() {
             {Object.keys(resume.getSkillsByCategory()).map((category) => {
               const skills = resume.getSkillsByCategory()[category];
               return (
-                <div className="flex flex-col w-[440px] gap-2">
+                <div key={category} className="flex flex-col w-[440px] gap-2">
                   <h6 className="text-primary text-center pt-8">{category}</h6>
                   <div className="flex flex-wrap gap-2 justify-center items-center">
                     {skills.map((skill) => (
-                      <SkillChip skill={skill} />
+                      <SkillChip key={skill.id} skill={skill} />
                     ))}
                   </div>
                 </div>
@@ -356,57 +412,132 @@ export default function Home() {
             })}
           </div>
         </div>
-      </div>
-      <div className="flex flex-col p-8 md:px-32 gap-4">
-        <h5 id="experience" className="text-center text-white">
-          Experience
-        </h5>
-        <h6 className="text-center text-primary ">Projects</h6>
-        <p className="text-white">
-          Explore my portfolio of distinctive projects, each showcasing a unique
-          blend of technical skills and creative solutions. From dynamic mobile
-          apps to comprehensive web platforms, these projects represent my
-          commitment to excellence in full-stack development and user-centric
-          design.
-        </p>
-        <div className="flex flex-wrap items-center justify-center gap-2">
-          {resume.projects.map((project) => {
-            return (
-              <div
-                className="flex flex-col w-[260px] h-[300px] items-center justify-start gap-2 p-2 rounded-lg"
-                style={{ background: project.color }}
-              >
-                <div className="flex flex-row justify-center items-center bg-white rounded-full w-[50px] h-[50px] p-2 ">
-                  <Renderable
-                    renderableData={project.renderableData}
-                    width={50}
-                    height={50}
-                    color={project.foregroundColor}
-                  />
-                </div>
-                <h6 style={{ color: project.foregroundColor }}>
-                  {project.name}
-                </h6>
-                <p
-                  className="subbody"
-                  style={{ color: project.foregroundColor }}
+        <div className="flex flex-col p-8 md:px-32 gap-4">
+          <h5 id="experience" className="text-center text-white">
+            Experience
+          </h5>
+          <h6 className="text-center text-primary">Projects</h6>
+          <p className="text-white">
+            Explore my portfolio of distinctive projects, each showcasing a
+            unique blend of technical skills and creative solutions. From
+            dynamic mobile apps to comprehensive web platforms, these projects
+            represent my commitment to excellence in full-stack development and
+            user-centric design.
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-2">
+            {resume.projects.map((project) => {
+              return (
+                <div
+                  key={project.id}
+                  className="flex flex-col w-[260px] h-[280px] items-center justify-start gap-2 p-2 rounded-lg"
+                  style={{ background: project.color }}
                 >
-                  {project.description}
-                </p>
-                <div className="flex-grow" />
-                <div className="flex flex-row gap-2">
-                  {project.skillIds.map((skillId) => {
-                    const skill = first(
-                      resume.skills.filter((skill) => skill.id == skillId),
-                    )!;
-                    return <SkillIcon skill={skill} />;
-                  })}
+                  <div className="flex flex-row justify-center items-center bg-white rounded-full w-[50px] h-[50px] p-2 ">
+                    <Renderable
+                      renderableData={project.renderableData}
+                      width={50}
+                      height={50}
+                      color={project.foregroundColor}
+                    />
+                  </div>
+                  <h6 style={{ color: project.foregroundColor }}>
+                    {project.name}
+                  </h6>
+                  <p
+                    className="subbody"
+                    style={{ color: project.foregroundColor }}
+                  >
+                    {project.description}
+                  </p>
+                  <div className="flex-grow" />
+                  <div className="flex flex-row gap-2">
+                    {project.skillIds.map((skillId) => {
+                      const skill = first(
+                        resume.skills.filter((skill) => skill.id == skillId),
+                      )!;
+                      return <SkillIcon key={skill.id} skill={skill} />;
+                    })}
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
+          <h6 className="text-center text-primary pt-10">Work History</h6>
+          <p className="text-white">
+            Welcome to a snapshot of my professional path! As a passionate
+            Software Engineer, I've navigated diverse roles, from enhancing
+            mission-critical government applications to pioneering mobile app
+            development and immersive game design. Each role has been a stepping
+            stone, enriching my skillset in full-stack development,
+            cross-functional collaboration, and innovative problem-solving.
+            Below, you'll find a detailed chronicle of my experiences that
+            collectively shape my expertise in mobile and web development.
+          </p>
+          <div className="flex flex-col gap-14 py-8">
+            {resume.workHistory.map((workHistory) => {
+              return (
+                <div
+                  key={workHistory.id}
+                  className="flex flex-row items-start gap-4"
+                >
+                  <p className="hidden md:block w-[220px] pt-6 text-white font-bold">{`${workHistory.startTime} - ${workHistory.endTime}`}</p>
+                  <div className="flex flex-col items-start gap-4">
+                    <div className="flex flex-row items-center justify-center gap-4">
+                      <div className="flex justify-center items-center rounded-full p-2 bg-white">
+                        <Renderable
+                          renderableData={workHistory.renderableData}
+                          width={36}
+                          height={36}
+                          color={'white'}
+                        />
+                      </div>
+                      <div className="flex flex-col items-start flex-grow">
+                        <h6 className="text-white">{workHistory.name}</h6>
+                        <p className="text-white opacity-95">
+                          {workHistory.title}
+                        </p>
+                        <p className="block md:hidden text-white font-bold">{`${workHistory.startTime} - ${workHistory.endTime}`}</p>
+                      </div>
+                    </div>
+                    <ul>
+                      {workHistory.experiences.map((experience) => (
+                        <li
+                          key={experience.substring(3)}
+                          className="subbody text-white"
+                        >
+                          {experience}
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="flex flex-row justify-start gap-2">
+                      {workHistory.skillIds.map((skillId) => {
+                        const skill = first(
+                          resume.skills.filter((skill) => skill.id == skillId),
+                        )!;
+                        return <SkillIcon key={skill.id} skill={skill} />;
+                      })}
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        <div className="flex flex-row items-center justify-evenly bg-black h-24">
+          <a className="subbody" href="mailto:contact@jakeboychenko.com">
+            contact@jakeboychenko.com
+          </a>
+          <div className="flex flex-col justify-center">
+            <p className="subbody text-white text-center opacity-80">
+              Built with Next.js
+            </p>
+            <p className="subbody text-white text-center opacity-80">
+              View it on Github <a href="#">here</a>
+            </p>
+          </div>
         </div>
       </div>
+
       <Script
         src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"
         strategy="afterInteractive"

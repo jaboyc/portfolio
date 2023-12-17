@@ -39,5 +39,9 @@ button {
 }
 
 a {
-  @apply underline;
+  @apply underline text-primary;
+}
+
+ul {
+  list-style-type: disc;
 }

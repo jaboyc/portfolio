@@ -5,6 +5,7 @@ export class Resume {
   constructor(
     public skills: Skill[],
     public projects: Project[],
+    public workHistory: WorkHistory[],
   ) {}
 
   getSkillsByCategory(): { [category: string]: Skill[] } {
@@ -30,4 +31,15 @@ export interface Project {
   color: string;
   foregroundColor: string;
   renderableData: RenderableData;
+}
+
+export interface WorkHistory {
+  id: string;
+  name: string;
+  title: string;
+  startTime: string;
+  endTime: string;
+  renderableData: RenderableData;
+  experiences: string[];
+  skillIds: string[];
 }
