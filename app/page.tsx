@@ -333,13 +333,13 @@ export default function Home() {
             Blog
           </a>
         </div>
-        <div className="px-8 py-8 md:px-32">
+        <div className="px-8 py-12 md:px-32 lg:px-60">
           <h1 className="text-white text-[38px] uppercase text-center md:text-[47px]">
             Innovative Software Engineer with a Flair for{' '}
-            <span className="text-primary-soft">Full-Stack Solutions</span>
+            <span className="text-primary">Full-Stack Solutions</span>
           </h1>
         </div>
-        <div className="flex flex-wrap justify-around items-center px-16 py-8 gap-6">
+        <div className="flex flex-wrap justify-around items-center px-16 py-8 gap-6 xl:px-48">
           <Image
             src="/profile_pic.jpg"
             width={288}
@@ -364,14 +364,26 @@ export default function Home() {
               with innovation in every project I undertake.
             </p>
             <div className="flex flex-wrap gap-4 items-center">
-              <button className="flex bg-primary rounded-xl px-3 py-2 gap-2 items-center transition hover:brightness-110 hover:scale-[101%]">
-                <FontAwesomeIcon height={16} icon={faFile} />
-                Download Resume
-              </button>
-              <button className="flex bg-[#0077B5] text-white rounded-xl px-3 py-2 gap-2 items-center hover:brightness-110 hover:scale-[101%]">
-                <FontAwesomeIcon height={16} icon={faLinkedin} />
-                LinkedIn
-              </button>
+              <a
+                href="/Resume.pdf"
+                download="Jake Boychenko's Resume"
+                target="_blank"
+              >
+                <button className="flex bg-primary rounded-xl px-3 py-2 gap-2 items-center transition hover:brightness-110 hover:scale-[101%]">
+                  <FontAwesomeIcon height={16} icon={faFile} color="black" />
+                  <p className="button-text text-black">Download Resume</p>
+                </button>
+              </a>
+              <a href="https://www.linkedin.com/in/jaboyc/" target="_blank">
+                <button className="flex bg-[#0077B5] text-white rounded-xl px-3 py-2 gap-2 items-center hover:brightness-110 hover:scale-[101%]">
+                  <FontAwesomeIcon
+                    height={16}
+                    icon={faLinkedin}
+                    color="white"
+                  />
+                  <p className="text-white">LinkedIn</p>
+                </button>
+              </a>
               <a
                 className="flex gap-2 items-center text-primary-soft hover:brightness-110"
                 href="mailto:contact@jakeboychenko.com"
@@ -382,7 +394,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col gap-2 bg-white p-4">
+        <div className="flex flex-col gap-4 bg-white px-4 py-8 xl:px-48">
           <h5 id="skills" className="text-black text-center scroll-m-28">
             Skills
           </h5>
@@ -412,8 +424,8 @@ export default function Home() {
             })}
           </div>
         </div>
-        <div className="flex flex-col p-8 md:px-32 gap-4">
-          <h5 id="experience" className="text-center text-white">
+        <div className="flex flex-col p-8 md:px-32 xl:px-72 gap-4">
+          <h5 id="experience" className="text-center text-white scroll-m-28">
             Experience
           </h5>
           <h6 className="text-center text-primary">Projects</h6>
@@ -480,7 +492,7 @@ export default function Home() {
                   key={workHistory.id}
                   className="flex flex-row items-start gap-4"
                 >
-                  <p className="hidden md:block w-[220px] pt-6 text-white font-bold">{`${workHistory.startTime} - ${workHistory.endTime}`}</p>
+                  <p className="hidden md:block w-[220px] flex-shrink-0 pt-6 text-white font-bold">{`${workHistory.startTime} - ${workHistory.endTime}`}</p>
                   <div className="flex flex-col items-start gap-4">
                     <div className="flex flex-row items-center justify-center gap-4">
                       <div className="flex justify-center items-center rounded-full p-2 bg-white">
@@ -523,15 +535,25 @@ export default function Home() {
             })}
           </div>
         </div>
-        <div className="flex flex-row items-center justify-evenly bg-black h-24">
-          <a className="subbody" href="mailto:contact@jakeboychenko.com">
+        <div className="flex flex-row items-center justify-evenly bg-black h-16">
+          <a
+            className="subbody text-primary"
+            style={{ fontSize: 12 }}
+            href="mailto:contact@jakeboychenko.com"
+          >
             contact@jakeboychenko.com
           </a>
           <div className="flex flex-col justify-center">
-            <p className="subbody text-white text-center opacity-80">
+            <p
+              className="subbody text-white text-center opacity-80"
+              style={{ fontSize: 12 }}
+            >
               Built with Next.js
             </p>
-            <p className="subbody text-white text-center opacity-80">
+            <p
+              className="subbody text-white text-center opacity-80"
+              style={{ fontSize: 12 }}
+            >
               View it on Github <a href="#">here</a>
             </p>
           </div>
@@ -540,24 +562,13 @@ export default function Home() {
 
       <Script
         src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"
-        strategy="afterInteractive"
+        strategy="beforeInteractive"
       />
       <Script
         src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"
-        strategy="afterInteractive"
+        strategy="beforeInteractive"
       />
-      <Script id="tippy" strategy="lazyOnload">
-        {`
-          document.querySelectorAll('div[data-description]:not([data-description=""])').forEach(div => {
-            // Create a Tippy instance for each div
-            tippy(div, {
-              content: div.getAttribute('data-description'),
-            });
-
-            div.removeAttribute('data-description');
-          });
-        `}
-      </Script>
+      <Script src="/scripts/tippy_init.js" strategy="afterInteractive" />
     </main>
   );
 }

@@ -34,12 +34,13 @@ button {
   @apply font-inter font-bold text-[14px];
 }
 
-.button-text {
-  @apply font-inter font-bold text-[14px];
+a:not(:has(button)) {
+  @apply text-primary underline;
 }
 
-a {
-  @apply underline text-primary;
+.button-text,
+a > button > p {
+  @apply font-inter font-bold text-[14px];
 }
 
 ul {
