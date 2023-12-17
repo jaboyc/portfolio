@@ -19,8 +19,235 @@ import Image from 'next/image';
 import SkillChip from './ui/skill_chip';
 import Script from 'next/script';
 import SkillIcon from './ui/skill_icon';
+import { Resume } from '@/src/resume';
+import { IconRenderableData, ImageRenderableData } from '@/src/ui-types';
+import Renderable from '@/src/ui/Renderable';
+import first from 'lodash/first';
+
+function getResume(): Resume {
+  return new Resume(
+    [
+      // Dart
+      {
+        id: 'dart',
+        category: 'Programming Languages',
+        name: 'Dart',
+        description:
+          'Employed Dart in conjunction with Flutter to develop full-stack mobile applications, taking advantage of its reactive programming capabilities and smooth UI design potential.',
+        color: '#C0EBFF',
+        foregroundColor: 'black',
+        renderableData: new ImageRenderableData('/dart_logo.svg', 'Dart Logo'),
+      },
+      // Typescript
+      {
+        id: 'typescript',
+        category: 'Programming Languages',
+        name: 'Typescript',
+        color: '#3178C6',
+        foregroundColor: 'white',
+        renderableData: new ImageRenderableData(
+          '/ts_logo.svg',
+          'Typescript Logo',
+        ),
+      },
+      // Java
+      {
+        id: 'java',
+        category: 'Programming Languages',
+        name: 'Java',
+        color: '#A61C3C',
+        foregroundColor: 'white',
+        renderableData: new IconRenderableData(faJava),
+      },
+      // C#
+      {
+        id: 'csharp',
+        category: 'Programming Languages',
+        name: 'C#',
+        color: '#3C2264',
+        foregroundColor: 'white',
+        renderableData: new ImageRenderableData('/c_sharp_logo.svg', 'C# Logo'),
+      },
+      // Flutter
+      {
+        id: 'flutter',
+        category: 'Frameworks',
+        name: 'Flutter',
+        color: '#C0EBFF',
+        foregroundColor: 'black',
+        renderableData: new ImageRenderableData(
+          '/flutter_logo.svg',
+          'Flutter Logo',
+        ),
+      },
+      // Next.js
+      {
+        id: 'nextJs',
+        category: 'Frameworks',
+        name: 'Next.js',
+        color: 'black',
+        foregroundColor: 'white',
+        renderableData: new ImageRenderableData(
+          '/next_js_logo.svg',
+          'Next.js Logo',
+        ),
+      },
+      // Struts
+      {
+        id: 'struts',
+        category: 'Frameworks',
+        name: 'Struts',
+        color: '#B7C4FF',
+        foregroundColor: 'black',
+        renderableData: new ImageRenderableData(
+          '/apache_struts_logo.svg',
+          'Apache Struts Logo',
+        ),
+      },
+      // Unity
+      {
+        id: 'unity',
+        category: 'Frameworks',
+        name: 'Unity',
+        color: 'white',
+        foregroundColor: 'black',
+        renderableData: new IconRenderableData(faUnity),
+      },
+      // Firebase
+      {
+        id: 'firebase',
+        category: 'Backends & Databases',
+        name: 'Firebase',
+        color: '#FFA000',
+        foregroundColor: 'white',
+        renderableData: new ImageRenderableData(
+          '/firebase_logo.svg',
+          'Firebase Logo',
+        ),
+      },
+      // AWS
+      {
+        id: 'aws',
+        category: 'Backends & Databases',
+        name: 'AWS',
+        color: '#232F3E',
+        foregroundColor: '#FF9900',
+        renderableData: new IconRenderableData(faAws),
+      },
+      // Appwrite
+      {
+        id: 'appwrite',
+        category: 'Backends & Databases',
+        name: 'Appwrite',
+        color: '#FD366E',
+        foregroundColor: 'white',
+        renderableData: new ImageRenderableData(
+          '/appwrite_logo.svg',
+          'Appwrite Logo',
+        ),
+      },
+      // SQL
+      {
+        id: 'sql',
+        category: 'Backends & Databases',
+        name: 'SQL',
+        color: 'var(--primary-color)',
+        foregroundColor: 'white',
+        renderableData: new IconRenderableData(faDatabase),
+      },
+      // Github
+      {
+        id: 'github',
+        category: 'Tools',
+        name: 'Github',
+        color: '#333333',
+        foregroundColor: 'white',
+        renderableData: new IconRenderableData(faGithub),
+      },
+      // Docker
+      {
+        id: 'docker',
+        category: 'Tools',
+        name: 'Docker',
+        color: '#0DB7ED',
+        foregroundColor: 'white',
+        renderableData: new IconRenderableData(faDocker),
+      },
+      // Figma
+      {
+        id: 'figma',
+        category: 'Tools',
+        name: 'Figma',
+        color: '#C7B9FF',
+        foregroundColor: 'black',
+        renderableData: new IconRenderableData(faFigma),
+      },
+      // Jira
+      {
+        id: 'jira',
+        category: 'Tools',
+        name: 'Jira',
+        color: '#0052CC',
+        foregroundColor: 'white',
+        renderableData: new IconRenderableData(faJira),
+      },
+    ],
+    [
+      {
+        id: 'jakeboychenko.com',
+        name: 'JakeBoychenko.com',
+        description:
+          'A personal portfolio website showcasing my full-stack development expertise in mobile and web applications.',
+        skillIds: ['nextJs', 'firebase', 'figma'],
+        color: 'var(--primary-color)',
+        foregroundColor: 'black',
+        renderableData: new IconRenderableData(faBriefcase),
+      },
+      {
+        id: 'safealone',
+        name: 'SafeAlone',
+        description:
+          'A safety-focused application leveraging real-time location tracking and push notifications to ensure the well-being of users.',
+        skillIds: ['flutter', 'firebase'],
+        color: '#1381EF',
+        foregroundColor: 'white',
+        renderableData: new ImageRenderableData(
+          '/safealone_logo.png',
+          'SafeAlone Logo',
+        ),
+      },
+      {
+        id: 'valet',
+        name: 'Valet',
+        description:
+          'An automated budgeting application that simplifies personal finance management with customizable budgeting strategies.',
+        skillIds: ['flutter', 'firebase'],
+        color: '#4CAF50',
+        foregroundColor: 'white',
+        renderableData: new ImageRenderableData(
+          '/valet_logo.png',
+          'Valet Logo',
+        ),
+      },
+      {
+        id: 'signpartnerpro',
+        name: 'Sign Partner Pro',
+        description:
+          'A suite of apps for project management, lead-generation, and AR viewing in the sign business industry.',
+        skillIds: ['flutter', 'unity', 'firebase'],
+        color: '#003959',
+        foregroundColor: 'white',
+        renderableData: new ImageRenderableData(
+          '/spp_logo.png',
+          'Sign Partner Pro Logo',
+        ),
+      },
+    ],
+  );
+}
 
 export default function Home() {
+  const resume = getResume();
   return (
     <main>
       <div className="flex flex-col gap-2">
@@ -114,135 +341,19 @@ export default function Home() {
             skills I've mastered and the new frontiers I'm exploring.
           </p>
           <div className="flex flex-wrap justify-evenly items-center gap-x-16">
-            <div className="flex flex-col w-[440px] gap-2">
-              <h6 className="text-primary text-center pt-8">
-                Programming Languages
-              </h6>
-              <div className="flex flex-wrap gap-2 justify-center items-center">
-                <SkillChip
-                  description="Employed Dart in conjunction with Flutter to develop full-stack mobile applications, taking advantage of its reactive programming capabilities and smooth UI design potential."
-                  skillName="Dart"
-                  backgroundColor="#C0EBFF"
-                  textColor="black"
-                  imageSrc="/dart_logo.svg"
-                  alt="Dart Logo"
-                />
-                <SkillChip
-                  skillName="Typescript"
-                  backgroundColor="#3178C6"
-                  textColor="white"
-                  imageSrc="/ts_logo.svg"
-                  alt="Typescript Logo"
-                />
-                <SkillChip
-                  skillName="Java"
-                  backgroundColor="#A61C3C"
-                  textColor="white"
-                  icon={faJava}
-                />
-                <SkillChip
-                  skillName="C#"
-                  backgroundColor="#3C2264"
-                  textColor="white"
-                  imageSrc="/c_sharp_logo.svg"
-                  alt="C# Logo"
-                />
-              </div>
-            </div>
-            <div className="flex flex-col max-w-[440px] gap-2">
-              <h6 className="text-primary text-center pt-8">Frameworks</h6>
-              <div className="flex flex-wrap gap-2 justify-center items-center">
-                <SkillChip
-                  skillName="Flutter"
-                  backgroundColor="#C0EBFF"
-                  textColor="black"
-                  imageSrc="/flutter_logo.svg"
-                  alt="Flutter Logo"
-                />
-                <SkillChip
-                  skillName="Next.js"
-                  backgroundColor="black"
-                  textColor="white"
-                  imageSrc="/next_js_logo.svg"
-                  alt="Next.js Logo"
-                />
-                <SkillChip
-                  skillName="Struts"
-                  backgroundColor="#B7C4FF"
-                  textColor="black"
-                  imageSrc="/apache_struts_logo.svg"
-                  alt="Apache Struts Logo"
-                />
-                <SkillChip
-                  skillName="Unity"
-                  backgroundColor="white"
-                  textColor="black"
-                  icon={faUnity}
-                />
-              </div>
-            </div>
-            <div className="flex flex-col max-w-[440px] gap-2">
-              <h6 className="text-primary text-center pt-8">
-                Backends & Databases
-              </h6>
-              <div className="flex flex-wrap gap-2 justify-center items-center">
-                <SkillChip
-                  skillName="Firebase"
-                  backgroundColor="#FFA000"
-                  textColor="white"
-                  imageSrc="/firebase_logo.svg"
-                  alt="Firebase Logo"
-                />
-                <SkillChip
-                  skillName="AWS"
-                  backgroundColor="#232F3E"
-                  textColor="#FF9900"
-                  icon={faAws}
-                />
-                <SkillChip
-                  skillName="Appwrite"
-                  backgroundColor="#FD366E"
-                  textColor="white"
-                  imageSrc="/appwrite_logo.svg"
-                  alt="Appwrite Logo"
-                />
-                <SkillChip
-                  skillName="SQL"
-                  backgroundColor="var(--primary-color)"
-                  textColor="white"
-                  icon={faDatabase}
-                />
-              </div>
-            </div>
-            <div className="flex flex-col max-w-[440px] gap-2">
-              <h6 className="text-primary text-center pt-8">Tools</h6>
-              <div className="flex flex-wrap gap-2 justify-center items-center">
-                <SkillChip
-                  skillName="Github"
-                  backgroundColor="#333333"
-                  textColor="white"
-                  icon={faGithub}
-                />
-                <SkillChip
-                  skillName="Docker"
-                  backgroundColor="#0DB7ED"
-                  textColor="white"
-                  icon={faDocker}
-                />
-                <SkillChip
-                  skillName="Figma"
-                  backgroundColor="#C7B9FF"
-                  textColor="black"
-                  icon={faFigma}
-                />
-                <SkillChip
-                  skillName="Jira"
-                  backgroundColor="#0052CC"
-                  textColor="white"
-                  icon={faJira}
-                />
-              </div>
-            </div>
+            {Object.keys(resume.getSkillsByCategory()).map((category) => {
+              const skills = resume.getSkillsByCategory()[category];
+              return (
+                <div className="flex flex-col w-[440px] gap-2">
+                  <h6 className="text-primary text-center pt-8">{category}</h6>
+                  <div className="flex flex-wrap gap-2 justify-center items-center">
+                    {skills.map((skill) => (
+                      <SkillChip skill={skill} />
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
@@ -259,127 +370,41 @@ export default function Home() {
           design.
         </p>
         <div className="flex flex-wrap items-center justify-center gap-2">
-          <div className="flex flex-col w-[260px] h-[300px] items-center justify-start gap-2 p-2 bg-primary rounded-lg">
-            <div className="flex flex-row justify-center items-center bg-white rounded-full w-[50px] h-[50px] p-2 ">
-              <FontAwesomeIcon icon={faBriefcase} />
-            </div>
-            <h6 className="text-black">JakeBoychenko.com</h6>
-            <p className="subbody">
-              A personal portfolio website showcasing my full-stack development
-              expertise in mobile and web applications.
-            </p>
-            <div className="flex-grow" />
-            <div className="flex flex-row gap-2">
-              <SkillIcon
-                backgroundColor="black"
-                imageSrc="./next_js_logo.svg"
-                alt="Next.js Logo"
-              />
-              <SkillIcon
-                backgroundColor="#FFA000"
-                imageSrc="./firebase_logo.svg"
-                alt="Firebase Logo"
-              />
-              <SkillIcon
-                backgroundColor="#C7B9FF"
-                icon={faFigma}
-                iconColor="black"
-              />
-            </div>
-          </div>
-          <div className="flex flex-col w-[260px] h-[300px] items-center justify-start gap-2 p-2 bg-[#1381EF] rounded-lg">
-            <div className="flex flex-row justify-center items-center bg-white rounded-full w-[50px] h-[50px] p-2 ">
-              <Image
-                src="/safealone_logo.png"
-                alt="SafeAlone Logo"
-                className="w-[50px] h-[50px]"
-                width={50}
-                height={50}
-                style={{ objectFit: 'contain' }}
-              />
-            </div>
-            <h6 className="text-white">SafeAlone</h6>
-            <p className="subbody text-white">
-              A safety-focused application leveraging real-time location
-              tracking and push notifications to ensure the well-being of users.{' '}
-            </p>
-            <div className="flex-grow" />
-            <div className="flex flex-row gap-2">
-              <SkillIcon
-                backgroundColor="#C0EBFF"
-                imageSrc="./flutter_logo.svg"
-                alt="Flutter Logo"
-              />
-              <SkillIcon
-                backgroundColor="#FFA000"
-                imageSrc="./firebase_logo.svg"
-                alt="Firebase Logo"
-              />
-            </div>
-          </div>
-          <div className="flex flex-col w-[260px] h-[300px] items-center justify-start gap-2 p-2 bg-[#4CAF50] rounded-lg">
-            <div className="flex flex-row justify-center items-center bg-white rounded-full w-[50px] h-[50px] ">
-              <Image
-                src="/valet_logo.png"
-                alt="Valet"
-                className="w-[50px] h-[50px]"
-                width={50}
-                height={50}
-                style={{ objectFit: 'contain' }}
-              />
-            </div>
-            <h6 className="text-white">Valet</h6>
-            <p className="subbody text-white">
-              An automated budgeting application that simplifies personal
-              finance management. Empowers users to customize their budgeting
-              strategies using intuitive rules for envelope budgeting.{' '}
-            </p>
-            <div className="flex-grow" />
-            <div className="flex flex-row gap-2">
-              <SkillIcon
-                backgroundColor="#C0EBFF"
-                imageSrc="./flutter_logo.svg"
-                alt="Flutter Logo"
-              />
-              <SkillIcon
-                backgroundColor="#FFA000"
-                imageSrc="./firebase_logo.svg"
-                alt="Firebase Logo"
-              />
-            </div>
-          </div>
-          <div className="flex flex-col w-[260px] h-[300px] items-center justify-start gap-2 p-2 bg-[#003959] rounded-lg">
-            <Image
-              src="/spp_logo.png"
-              alt="Sign Partmer Pro Logo"
-              className="w-[50px] h-[50px]"
-              width={50}
-              height={50}
-            />
-            <h6 className="text-white">Sign Partner Pro</h6>
-            <p className="subbody text-white">
-              A collection of apps to help with project management,
-              lead-generation, and viewing signs in AR for sign businesses.
-            </p>
-            <div className="flex-grow" />
-            <div className="flex flex-row gap-2">
-              <SkillIcon
-                backgroundColor="#C0EBFF"
-                imageSrc="./flutter_logo.svg"
-                alt="Flutter Logo"
-              />
-              <SkillIcon
-                backgroundColor="white"
-                icon={faUnity}
-                iconColor="black"
-              />
-              <SkillIcon
-                backgroundColor="#FFA000"
-                imageSrc="./firebase_logo.svg"
-                alt="Firebase Logo"
-              />
-            </div>
-          </div>
+          {resume.projects.map((project) => {
+            return (
+              <div
+                className="flex flex-col w-[260px] h-[300px] items-center justify-start gap-2 p-2 rounded-lg"
+                style={{ background: project.color }}
+              >
+                <div className="flex flex-row justify-center items-center bg-white rounded-full w-[50px] h-[50px] p-2 ">
+                  <Renderable
+                    renderableData={project.renderableData}
+                    width={50}
+                    height={50}
+                    color={project.foregroundColor}
+                  />
+                </div>
+                <h6 style={{ color: project.foregroundColor }}>
+                  {project.name}
+                </h6>
+                <p
+                  className="subbody"
+                  style={{ color: project.foregroundColor }}
+                >
+                  {project.description}
+                </p>
+                <div className="flex-grow" />
+                <div className="flex flex-row gap-2">
+                  {project.skillIds.map((skillId) => {
+                    const skill = first(
+                      resume.skills.filter((skill) => skill.id == skillId),
+                    )!;
+                    return <SkillIcon skill={skill} />;
+                  })}
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
       <Script
