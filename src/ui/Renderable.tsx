@@ -1,5 +1,4 @@
-import { render } from 'react-dom';
-import { IconRenderableData, RenderableData } from '../ui-types';
+import { RenderableData } from '../ui-types';
 import Image from 'next/image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
