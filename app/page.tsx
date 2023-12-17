@@ -9,6 +9,7 @@ import {
   faUnity,
 } from '@fortawesome/free-brands-svg-icons';
 import {
+  faBriefcase,
   faDatabase,
   faEnvelope,
   faFile,
@@ -17,6 +18,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import SkillChip from './ui/skill_chip';
 import Script from 'next/script';
+import SkillIcon from './ui/skill_icon';
 
 export default function Home() {
   return (
@@ -37,7 +39,7 @@ export default function Home() {
           </a>
           <a
             className="md:block hidden no-underline font-outfit text-[24px] font-thin tracking-widest text-[#ffffffc0] transition hover:text-white"
-            href="#"
+            href="#experience"
           >
             Experience
           </a>
@@ -49,7 +51,7 @@ export default function Home() {
           </a>
         </div>
         <div className="px-8 py-8 md:px-32">
-          <h1 className="text-[38px] uppercase text-center md:text-[47px]">
+          <h1 className="text-white text-[38px] uppercase text-center md:text-[47px]">
             Innovative Software Engineer with a Flair for{' '}
             <span className="text-primary-soft">Full-Stack Solutions</span>
           </h1>
@@ -63,7 +65,7 @@ export default function Home() {
             className="flex-shrink-0 rounded-full	w-72 h-auto object-cover"
           />
           <div className="flex basis-[500px] flex-grow flex-col min-w-[60px] justify-around gap-4">
-            <p>
+            <p className="text-white">
               As a Full-Stack Web and Mobile Developer, I've carved a niche in
               creating sophisticated and user-centric solutions. My expertise
               lies in seamlessly integrating front-end and back-end
@@ -118,7 +120,7 @@ export default function Home() {
               </h6>
               <div className="flex flex-wrap gap-2 justify-center items-center">
                 <SkillChip
-                  id="skill-dart"
+                  description="Employed Dart in conjunction with Flutter to develop full-stack mobile applications, taking advantage of its reactive programming capabilities and smooth UI design potential."
                   skillName="Dart"
                   backgroundColor="#C0EBFF"
                   textColor="black"
@@ -126,7 +128,6 @@ export default function Home() {
                   alt="Dart Logo"
                 />
                 <SkillChip
-                  id="skill-typescript"
                   skillName="Typescript"
                   backgroundColor="#3178C6"
                   textColor="white"
@@ -134,14 +135,12 @@ export default function Home() {
                   alt="Typescript Logo"
                 />
                 <SkillChip
-                  id="skill-java"
                   skillName="Java"
                   backgroundColor="#A61C3C"
                   textColor="white"
                   icon={faJava}
                 />
                 <SkillChip
-                  id="skill-c-sharp"
                   skillName="C#"
                   backgroundColor="#3C2264"
                   textColor="white"
@@ -154,7 +153,6 @@ export default function Home() {
               <h6 className="text-primary text-center pt-8">Frameworks</h6>
               <div className="flex flex-wrap gap-2 justify-center items-center">
                 <SkillChip
-                  id="skill-flutter"
                   skillName="Flutter"
                   backgroundColor="#C0EBFF"
                   textColor="black"
@@ -162,7 +160,6 @@ export default function Home() {
                   alt="Flutter Logo"
                 />
                 <SkillChip
-                  id="skill-next-js"
                   skillName="Next.js"
                   backgroundColor="black"
                   textColor="white"
@@ -170,7 +167,6 @@ export default function Home() {
                   alt="Next.js Logo"
                 />
                 <SkillChip
-                  id="skill-struts"
                   skillName="Struts"
                   backgroundColor="#B7C4FF"
                   textColor="black"
@@ -178,7 +174,6 @@ export default function Home() {
                   alt="Apache Struts Logo"
                 />
                 <SkillChip
-                  id="skill-unity"
                   skillName="Unity"
                   backgroundColor="white"
                   textColor="black"
@@ -192,7 +187,6 @@ export default function Home() {
               </h6>
               <div className="flex flex-wrap gap-2 justify-center items-center">
                 <SkillChip
-                  id="skill-firebase"
                   skillName="Firebase"
                   backgroundColor="#FFA000"
                   textColor="white"
@@ -200,14 +194,12 @@ export default function Home() {
                   alt="Firebase Logo"
                 />
                 <SkillChip
-                  id="skill-aws"
                   skillName="AWS"
                   backgroundColor="#232F3E"
                   textColor="#FF9900"
                   icon={faAws}
                 />
                 <SkillChip
-                  id="skill-appwrite"
                   skillName="Appwrite"
                   backgroundColor="#FD366E"
                   textColor="white"
@@ -215,7 +207,6 @@ export default function Home() {
                   alt="Appwrite Logo"
                 />
                 <SkillChip
-                  id="skill-sql"
                   skillName="SQL"
                   backgroundColor="var(--primary-color)"
                   textColor="white"
@@ -227,28 +218,24 @@ export default function Home() {
               <h6 className="text-primary text-center pt-8">Tools</h6>
               <div className="flex flex-wrap gap-2 justify-center items-center">
                 <SkillChip
-                  id="skill-github"
                   skillName="Github"
                   backgroundColor="#333333"
                   textColor="white"
                   icon={faGithub}
                 />
                 <SkillChip
-                  id="skill-docker"
                   skillName="Docker"
                   backgroundColor="#0DB7ED"
                   textColor="white"
                   icon={faDocker}
                 />
                 <SkillChip
-                  id="skill-figma"
                   skillName="Figma"
                   backgroundColor="#C7B9FF"
                   textColor="black"
                   icon={faFigma}
                 />
                 <SkillChip
-                  id="skill-jira"
                   skillName="Jira"
                   backgroundColor="#0052CC"
                   textColor="white"
@@ -259,13 +246,161 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
-      <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
-      <Script id="tippy">
-        {`tippy('#skill-dart', {
-          content: 'Employed Dart in conjunction with Flutter to develop full-stack mobile applications, taking advantage of its reactive programming capabilities and smooth UI design potential.',
-          interactive: true,
-        });`}
+      <div className="flex flex-col p-8 md:px-32 gap-4">
+        <h5 id="experience" className="text-center text-white">
+          Experience
+        </h5>
+        <h6 className="text-center text-primary ">Projects</h6>
+        <p className="text-white">
+          Explore my portfolio of distinctive projects, each showcasing a unique
+          blend of technical skills and creative solutions. From dynamic mobile
+          apps to comprehensive web platforms, these projects represent my
+          commitment to excellence in full-stack development and user-centric
+          design.
+        </p>
+        <div className="flex flex-wrap items-center justify-center gap-2">
+          <div className="flex flex-col w-[260px] h-[300px] items-center justify-start gap-2 p-2 bg-primary rounded-lg">
+            <div className="flex flex-row justify-center items-center bg-white rounded-full w-[50px] h-[50px] p-2 ">
+              <FontAwesomeIcon icon={faBriefcase} />
+            </div>
+            <h6 className="text-black">JakeBoychenko.com</h6>
+            <p className="subbody">
+              A personal portfolio website showcasing my full-stack development
+              expertise in mobile and web applications.
+            </p>
+            <div className="flex-grow" />
+            <div className="flex flex-row gap-2">
+              <SkillIcon
+                backgroundColor="black"
+                imageSrc="./next_js_logo.svg"
+                alt="Next.js Logo"
+              />
+              <SkillIcon
+                backgroundColor="#FFA000"
+                imageSrc="./firebase_logo.svg"
+                alt="Firebase Logo"
+              />
+              <SkillIcon
+                backgroundColor="#C7B9FF"
+                icon={faFigma}
+                iconColor="black"
+              />
+            </div>
+          </div>
+          <div className="flex flex-col w-[260px] h-[300px] items-center justify-start gap-2 p-2 bg-[#1381EF] rounded-lg">
+            <div className="flex flex-row justify-center items-center bg-white rounded-full w-[50px] h-[50px] p-2 ">
+              <Image
+                src="/safealone_logo.png"
+                alt="SafeAlone Logo"
+                className="w-[50px] h-[50px]"
+                width={50}
+                height={50}
+                style={{ objectFit: 'contain' }}
+              />
+            </div>
+            <h6 className="text-white">SafeAlone</h6>
+            <p className="subbody text-white">
+              A safety-focused application leveraging real-time location
+              tracking and push notifications to ensure the well-being of users.{' '}
+            </p>
+            <div className="flex-grow" />
+            <div className="flex flex-row gap-2">
+              <SkillIcon
+                backgroundColor="#C0EBFF"
+                imageSrc="./flutter_logo.svg"
+                alt="Flutter Logo"
+              />
+              <SkillIcon
+                backgroundColor="#FFA000"
+                imageSrc="./firebase_logo.svg"
+                alt="Firebase Logo"
+              />
+            </div>
+          </div>
+          <div className="flex flex-col w-[260px] h-[300px] items-center justify-start gap-2 p-2 bg-[#4CAF50] rounded-lg">
+            <div className="flex flex-row justify-center items-center bg-white rounded-full w-[50px] h-[50px] ">
+              <Image
+                src="/valet_logo.png"
+                alt="Valet"
+                className="w-[50px] h-[50px]"
+                width={50}
+                height={50}
+                style={{ objectFit: 'contain' }}
+              />
+            </div>
+            <h6 className="text-white">Valet</h6>
+            <p className="subbody text-white">
+              An automated budgeting application that simplifies personal
+              finance management. Empowers users to customize their budgeting
+              strategies using intuitive rules for envelope budgeting.{' '}
+            </p>
+            <div className="flex-grow" />
+            <div className="flex flex-row gap-2">
+              <SkillIcon
+                backgroundColor="#C0EBFF"
+                imageSrc="./flutter_logo.svg"
+                alt="Flutter Logo"
+              />
+              <SkillIcon
+                backgroundColor="#FFA000"
+                imageSrc="./firebase_logo.svg"
+                alt="Firebase Logo"
+              />
+            </div>
+          </div>
+          <div className="flex flex-col w-[260px] h-[300px] items-center justify-start gap-2 p-2 bg-[#003959] rounded-lg">
+            <Image
+              src="/spp_logo.png"
+              alt="Sign Partmer Pro Logo"
+              className="w-[50px] h-[50px]"
+              width={50}
+              height={50}
+            />
+            <h6 className="text-white">Sign Partner Pro</h6>
+            <p className="subbody text-white">
+              A collection of apps to help with project management,
+              lead-generation, and viewing signs in AR for sign businesses.
+            </p>
+            <div className="flex-grow" />
+            <div className="flex flex-row gap-2">
+              <SkillIcon
+                backgroundColor="#C0EBFF"
+                imageSrc="./flutter_logo.svg"
+                alt="Flutter Logo"
+              />
+              <SkillIcon
+                backgroundColor="white"
+                icon={faUnity}
+                iconColor="black"
+              />
+              <SkillIcon
+                backgroundColor="#FFA000"
+                imageSrc="./firebase_logo.svg"
+                alt="Firebase Logo"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <Script
+        src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"
+        strategy="afterInteractive"
+      />
+      <Script
+        src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"
+        strategy="afterInteractive"
+      />
+      <Script id="tippy" strategy="lazyOnload">
+        {`
+          document.querySelectorAll('div[data-description]:not([data-description=""])').forEach(div => {
+            // Create a Tippy instance for each div
+            tippy(div, {
+              content: div.getAttribute('data-description'),
+            });
+
+            div.removeAttribute('data-description');
+          });
+        `}
       </Script>
     </main>
   );

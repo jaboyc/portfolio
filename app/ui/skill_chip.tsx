@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 
 export default function SkillChip({
-  id,
+  description,
   skillName,
   backgroundColor,
   textColor,
@@ -11,8 +11,8 @@ export default function SkillChip({
   alt,
   icon,
 }: {
-  id: string;
   skillName: string;
+  description?: string;
   backgroundColor: string;
   textColor: string;
   imageSrc?: string;
@@ -23,7 +23,7 @@ export default function SkillChip({
     <div>
       {/* Empty `div` for Tippy */}
       <div
-        id={id}
+        data-description={description}
         className={`flex shrink-0 gap-2 items-center h-10 p-2 rounded-full hover:brightness-[104%] cursor-default ${
           backgroundColor == 'white' ? 'border-2 border-black' : ''
         }`}

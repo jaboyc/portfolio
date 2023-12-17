@@ -15,7 +15,6 @@ const config: Config = {
         'primary-soft': 'var(--primary-soft-color)',
         background: 'var(--background-color)',
       },
-
       fontFamily: {
         outfit: ['Outfit', 'sans-serif'],
         roboto: ['Roboto', 'sans-serif'],
