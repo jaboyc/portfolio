@@ -15,7 +15,7 @@ h1 {
 }
 
 h5 {
-  @apply font-outfit font-bold text-[29px] text-white;
+  @apply font-outfit font-bold text-[29px] text-white tracking-widest;
 }
 
 h6 {
@@ -27,6 +27,10 @@ p {
 }
 
 button {
+  @apply font-inter font-bold text-[14px];
+}
+
+.button-text {
   @apply font-inter font-bold text-[14px];
 }
 
