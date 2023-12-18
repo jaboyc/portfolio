@@ -437,7 +437,7 @@ export default function Home() {
               return (
                 <div
                   key={project.id}
-                  className="flex flex-col w-[260px] h-[280px] items-center justify-start gap-2 p-2 rounded-lg"
+                  className="flex flex-col w-[260px] h-[320px] items-center justify-start gap-2 p-2 rounded-lg"
                   style={{ background: project.color }}
                 >
                   <div className="flex flex-row justify-center items-center bg-white rounded-full w-[50px] h-[50px] p-2 ">

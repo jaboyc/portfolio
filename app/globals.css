@@ -11,27 +11,27 @@
 }
 
 h1 {
-  @apply font-outfit font-bold text-[47px] tracking-widest;
+  @apply font-outfit font-bold text-[47px] tracking-wider;
 }
 
 h5 {
-  @apply font-outfit font-bold text-[29px] tracking-widest;
+  @apply font-outfit font-bold text-[29px] tracking-wider;
 }
 
 h6 {
-  @apply font-roboto font-bold text-[22px] tracking-wider;
+  @apply font-roboto font-bold text-[22px] tracking-wide;
 }
 
 p {
-  @apply font-roboto text-[17px] tracking-wide font-thin;
+  @apply font-roboto text-[19px] font-thin;
 }
 
 .subbody {
-  @apply font-roboto text-[17px] tracking-tight font-thin leading-tight;
+  @apply font-roboto text-[19px] tracking-tight font-thin leading-tight;
 }
 
 button {
-  @apply font-inter font-bold text-[14px];
+  @apply font-inter font-bold text-[18px];
 }
 
 a:not(:has(button)) {
@@ -40,7 +40,7 @@ a:not(:has(button)) {
 
 .button-text,
 a > button > p {
-  @apply font-inter font-bold text-[14px];
+  @apply font-inter font-bold text-[18px];
 }
 
 ul {
