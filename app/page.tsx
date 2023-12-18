@@ -1,309 +1,48 @@
-import {
-  faAws,
-  faDocker,
-  faFigma,
-  faGithub,
-  faJava,
-  faJira,
-  faLinkedin,
-  faUnity,
-} from '@fortawesome/free-brands-svg-icons';
-import {
-  faBriefcase,
-  faDatabase,
-  faEnvelope,
-  faFile,
-} from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Image from 'next/image';
-import SkillChip from './ui/skill_chip';
-import Script from 'next/script';
-import SkillIcon from './ui/skill_icon';
-import { Resume } from '@/src/resume';
-import { IconRenderableData, ImageRenderableData } from '@/src/ui-types';
 import Renderable from '@/src/ui/Renderable';
-import first from 'lodash/first';
+import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import { faEnvelope, faFile } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { PrismaClient } from '@prisma/client';
+import groupBy from 'lodash/groupBy';
+import moment from 'moment';
+import Script from 'next/script';
+import SkillChip from './ui/skill_chip';
+import SkillIcon from './ui/skill_icon';
 
-function getResume(): Resume {
-  return new Resume(
-    [
-      // Dart
-      {
-        id: 'dart',
-        category: 'Programming Languages',
-        name: 'Dart',
-        description:
-          'Employed Dart in conjunction with Flutter to develop full-stack mobile applications, taking advantage of its reactive programming capabilities and smooth UI design potential.',
-        color: '#C0EBFF',
-        foregroundColor: 'black',
-        renderableData: new ImageRenderableData('/dart_logo.svg', 'Dart Logo'),
+export default async function Home() {
+  const prisma = new PrismaClient();
+  const resume = await prisma.resume.findFirstOrThrow({
+    include: {
+      renderable: true,
+      skills: {
+        include: {
+          renderable: true,
+        },
       },
-      // Typescript
-      {
-        id: 'typescript',
-        category: 'Programming Languages',
-        name: 'Typescript',
-        color: '#3178C6',
-        foregroundColor: 'white',
-        renderableData: new ImageRenderableData(
-          '/ts_logo.svg',
-          'Typescript Logo',
-        ),
+      projects: {
+        include: {
+          renderable: true,
+          skills: {
+            include: {
+              renderable: true,
+            },
+          },
+        },
       },
-      // Java
-      {
-        id: 'java',
-        category: 'Programming Languages',
-        name: 'Java',
-        color: '#A61C3C',
-        foregroundColor: 'white',
-        renderableData: new IconRenderableData(faJava),
+      workHistory: {
+        include: {
+          renderable: true,
+          skills: {
+            include: {
+              renderable: true,
+            },
+          },
+        },
       },
-      // C#
-      {
-        id: 'csharp',
-        category: 'Programming Languages',
-        name: 'C#',
-        color: '#3C2264',
-        foregroundColor: 'white',
-        renderableData: new ImageRenderableData('/c_sharp_logo.svg', 'C# Logo'),
-      },
-      // Flutter
-      {
-        id: 'flutter',
-        category: 'Frameworks',
-        name: 'Flutter',
-        color: '#C0EBFF',
-        foregroundColor: 'black',
-        renderableData: new ImageRenderableData(
-          '/flutter_logo.svg',
-          'Flutter Logo',
-        ),
-      },
-      // Next.js
-      {
-        id: 'nextJs',
-        category: 'Frameworks',
-        name: 'Next.js',
-        color: 'black',
-        foregroundColor: 'white',
-        renderableData: new ImageRenderableData(
-          '/next_js_logo.svg',
-          'Next.js Logo',
-        ),
-      },
-      // Struts
-      {
-        id: 'struts',
-        category: 'Frameworks',
-        name: 'Struts',
-        color: '#B7C4FF',
-        foregroundColor: 'black',
-        renderableData: new ImageRenderableData(
-          '/apache_struts_logo.svg',
-          'Apache Struts Logo',
-        ),
-      },
-      // Unity
-      {
-        id: 'unity',
-        category: 'Frameworks',
-        name: 'Unity',
-        color: 'white',
-        foregroundColor: 'black',
-        renderableData: new IconRenderableData(faUnity),
-      },
-      // Firebase
-      {
-        id: 'firebase',
-        category: 'Backends & Databases',
-        name: 'Firebase',
-        color: '#FFA000',
-        foregroundColor: 'white',
-        renderableData: new ImageRenderableData(
-          '/firebase_logo.svg',
-          'Firebase Logo',
-        ),
-      },
-      // AWS
-      {
-        id: 'aws',
-        category: 'Backends & Databases',
-        name: 'AWS',
-        color: '#232F3E',
-        foregroundColor: '#FF9900',
-        renderableData: new IconRenderableData(faAws),
-      },
-      // Appwrite
-      {
-        id: 'appwrite',
-        category: 'Backends & Databases',
-        name: 'Appwrite',
-        color: '#FD366E',
-        foregroundColor: 'white',
-        renderableData: new ImageRenderableData(
-          '/appwrite_logo.svg',
-          'Appwrite Logo',
-        ),
-      },
-      // SQL
-      {
-        id: 'sql',
-        category: 'Backends & Databases',
-        name: 'SQL',
-        color: 'var(--primary-color)',
-        foregroundColor: 'white',
-        renderableData: new IconRenderableData(faDatabase),
-      },
-      // Github
-      {
-        id: 'github',
-        category: 'Tools',
-        name: 'Github',
-        color: '#333333',
-        foregroundColor: 'white',
-        renderableData: new IconRenderableData(faGithub),
-      },
-      // Docker
-      {
-        id: 'docker',
-        category: 'Tools',
-        name: 'Docker',
-        color: '#0DB7ED',
-        foregroundColor: 'white',
-        renderableData: new IconRenderableData(faDocker),
-      },
-      // Figma
-      {
-        id: 'figma',
-        category: 'Tools',
-        name: 'Figma',
-        color: '#C7B9FF',
-        foregroundColor: 'black',
-        renderableData: new IconRenderableData(faFigma),
-      },
-      // Jira
-      {
-        id: 'jira',
-        category: 'Tools',
-        name: 'Jira',
-        color: '#0052CC',
-        foregroundColor: 'white',
-        renderableData: new IconRenderableData(faJira),
-      },
-    ],
-    [
-      {
-        id: 'jakeboychenko.com',
-        name: 'JakeBoychenko.com',
-        description:
-          'A personal portfolio website showcasing my full-stack development expertise in mobile and web applications.',
-        skillIds: ['nextJs', 'firebase', 'figma'],
-        color: 'var(--primary-color)',
-        foregroundColor: 'black',
-        renderableData: new IconRenderableData(faBriefcase),
-      },
-      {
-        id: 'safealone',
-        name: 'SafeAlone',
-        description:
-          'A safety-focused application leveraging real-time location tracking and push notifications to ensure the well-being of users.',
-        skillIds: ['flutter', 'firebase'],
-        color: '#1381EF',
-        foregroundColor: 'white',
-        renderableData: new ImageRenderableData(
-          '/safealone_logo.png',
-          'SafeAlone Logo',
-        ),
-      },
-      {
-        id: 'valet',
-        name: 'Valet',
-        description:
-          'An automated budgeting application that simplifies personal finance management with customizable budgeting strategies.',
-        skillIds: ['flutter', 'firebase'],
-        color: '#4CAF50',
-        foregroundColor: 'white',
-        renderableData: new ImageRenderableData(
-          '/valet_logo.png',
-          'Valet Logo',
-        ),
-      },
-      {
-        id: 'signpartnerpro',
-        name: 'Sign Partner Pro',
-        description:
-          'A suite of apps for project management, lead-generation, and AR viewing in the sign business industry.',
-        skillIds: ['flutter', 'unity', 'firebase'],
-        color: '#003959',
-        foregroundColor: 'white',
-        renderableData: new ImageRenderableData(
-          '/spp_logo.png',
-          'Sign Partner Pro Logo',
-        ),
-      },
-    ],
-    [
-      {
-        id: 'pangiam',
-        name: 'Pangiam',
-        title: 'Mid-level Software Engineer',
-        startTime: 'August 2023',
-        endTime: 'Present',
-        experiences: [
-          'Involved in the enhancement and maintenance of mission-critical government applications.',
-          'Utilize Java EJB, Struts, and JSP in full-stack development.',
-          'Collaborate in a cross-functional team, adhering to agile methodologies.',
-        ],
-        skillIds: ['java', 'struts', 'sql'],
-        renderableData: new ImageRenderableData(
-          '/pangiam_logo.png',
-          'Pangiam Logo',
-        ),
-      },
-      {
-        id: 'brightspot',
-        name: 'Brightspot',
-        title: 'Software Engineer II',
-        startTime: 'June 2021',
-        endTime: 'May 2023',
-        experiences: [
-          'Led backend development and data migration for over 5 enterprise projects, analyzing and transitioning various data structures (SQL, JSON) to our platform.',
-          'Customized CMS backend, including Java modifications, custom API creation, and integration with external services (AWS, Getty, Google Analytics).',
-          'Managed full release cycle, from lower environment to production, along with configuration and health monitoring using Kubernetes.',
-          'Mentored a summer intern, focusing on technical skill enhancement and career development.',
-        ],
-        skillIds: ['java', 'aws', 'sql', 'docker'],
-        renderableData: new ImageRenderableData(
-          '/brightspot_logo.jpg',
-          'Brightspot Logo',
-        ),
-      },
-      {
-        id: 'jlogical',
-        name: 'JLogical Apps',
-        title: 'Freelance Mobile Developer',
-        startTime: 'August 2020',
-        endTime: 'Present',
-        experiences: [
-          'Built a side-business specializing in full-stack Flutter mobile application development.',
-          'Seamlessly integrated Flutter with Unity and Firebase to deliver comprehensive app solutions.',
-          'Innovated with Flood, a custom-built Flutter framework designed to streamline and enhance the app development process.',
-          'Collaborated with a mentoree in leading the development of applications, instilling best practices like Test-Driven Development (TDD) and Agile methodologies.',
-          'Maintained long-term client relationships, with multiple satisfied clients and the successful release of 4 full-stack Flutter applications.',
-        ],
-        skillIds: ['flutter', 'unity', 'firebase', 'appwrite'],
-        renderableData: new ImageRenderableData(
-          '/jlogical_logo.png',
-          'JLogical Logo',
-        ),
-      },
-    ],
-  );
-}
+    },
+  });
+  const skillsByCategory = groupBy(resume.skills, (skill) => skill.category);
 
-export default function Home() {
-  const resume = getResume();
   return (
     <main>
       <div className="flex flex-col gap-2">
@@ -340,12 +79,12 @@ export default function Home() {
           </h1>
         </div>
         <div className="flex flex-wrap justify-around items-center px-16 py-8 gap-6 xl:px-48">
-          <Image
-            src="/profile_pic.jpg"
+          <Renderable
+            renderable={resume.renderable}
             width={288}
             height={288}
-            alt="Jake's Profile Picture"
-            className="flex-shrink-0 rounded-full	w-72 h-auto object-cover"
+            color="white"
+            className="flex-shrink-0 rounded-full"
           />
           <div className="flex basis-[500px] flex-grow flex-col min-w-[60px] justify-around gap-4">
             <p className="text-white">
@@ -370,7 +109,7 @@ export default function Home() {
                   <p className="button-text text-black">Download Resume</p>
                 </button>
               </a>
-              <a href="https://www.linkedin.com/in/jaboyc/" target="_blank">
+              <a href={resume.linkedInUrl} target="_blank">
                 <button className="flex bg-[#0077B5] text-white rounded-xl px-3 py-2 gap-2 items-center hover:brightness-110 hover:scale-[101%]">
                   <FontAwesomeIcon
                     height={16}
@@ -382,10 +121,10 @@ export default function Home() {
               </a>
               <a
                 className="flex gap-2 items-center text-primary-soft hover:brightness-110"
-                href="mailto:contact@jakeboychenko.com"
+                href={`mailto:${resume.email}`}
               >
                 <FontAwesomeIcon height={16} icon={faEnvelope} />
-                contact@jakeboychenko.com
+                {resume.email}
               </a>
             </div>
           </div>
@@ -405,8 +144,8 @@ export default function Home() {
             skills I&apos;ve mastered and the new frontiers I&apos;m exploring.
           </p>
           <div className="flex flex-wrap justify-evenly items-center gap-x-16">
-            {Object.keys(resume.getSkillsByCategory()).map((category) => {
-              const skills = resume.getSkillsByCategory()[category];
+            {Object.keys(skillsByCategory).map((category) => {
+              const skills = skillsByCategory[category];
               return (
                 <div key={category} className="flex flex-col w-[440px] gap-2">
                   <h6 className="text-primary text-center pt-8">{category}</h6>
@@ -442,7 +181,7 @@ export default function Home() {
                 >
                   <div className="flex flex-row justify-center items-center bg-white rounded-full w-[50px] h-[50px] p-2 ">
                     <Renderable
-                      renderableData={project.renderableData}
+                      renderable={project.renderable}
                       width={50}
                       height={50}
                       color={project.foregroundColor}
@@ -455,14 +194,11 @@ export default function Home() {
                     className="subbody"
                     style={{ color: project.foregroundColor }}
                   >
-                    {project.description}
+                    {project.shortDescription}
                   </p>
                   <div className="flex-grow" />
                   <div className="flex flex-row gap-2">
-                    {project.skillIds.map((skillId) => {
-                      const skill = first(
-                        resume.skills.filter((skill) => skill.id == skillId),
-                      )!;
+                    {project.skills.map((skill) => {
                       return <SkillIcon key={skill.id} skill={skill} />;
                     })}
                   </div>
@@ -483,17 +219,26 @@ export default function Home() {
           </p>
           <div className="flex flex-col gap-14 py-8">
             {resume.workHistory.map((workHistory) => {
+              const timeline = `${moment(workHistory.startTime).format(
+                'MMM yyyy',
+              )} - ${
+                workHistory.endTime
+                  ? moment(workHistory.endTime).format('MMM yyyy')
+                  : 'Present'
+              }`;
               return (
                 <div
                   key={workHistory.id}
                   className="flex flex-row items-start gap-4"
                 >
-                  <p className="hidden md:block w-[220px] flex-shrink-0 pt-6 text-white font-bold">{`${workHistory.startTime} - ${workHistory.endTime}`}</p>
+                  <p className="hidden md:block w-[220px] flex-shrink-0 pt-6 text-white font-bold">
+                    {timeline}
+                  </p>
                   <div className="flex flex-col items-start gap-4">
                     <div className="flex flex-row items-center justify-center gap-4">
                       <div className="flex justify-center items-center rounded-full p-2 bg-white">
                         <Renderable
-                          renderableData={workHistory.renderableData}
+                          renderable={workHistory.renderable}
                           width={36}
                           height={36}
                           color={'white'}
@@ -504,24 +249,23 @@ export default function Home() {
                         <p className="text-white opacity-95">
                           {workHistory.title}
                         </p>
-                        <p className="block md:hidden text-white font-bold">{`${workHistory.startTime} - ${workHistory.endTime}`}</p>
+                        <p className="block md:hidden text-white font-bold">
+                          {timeline}
+                        </p>
                       </div>
                     </div>
                     <ul>
-                      {workHistory.experiences.map((experience) => (
+                      {workHistory.lineItems.map((lineItem) => (
                         <li
-                          key={experience.substring(3)}
+                          key={lineItem.substring(3)}
                           className="subbody text-white"
                         >
-                          {experience}
+                          {lineItem}
                         </li>
                       ))}
                     </ul>
                     <div className="flex flex-row justify-start gap-2">
-                      {workHistory.skillIds.map((skillId) => {
-                        const skill = first(
-                          resume.skills.filter((skill) => skill.id == skillId),
-                        )!;
+                      {workHistory.skills.map((skill) => {
                         return <SkillIcon key={skill.id} skill={skill} />;
                       })}
                     </div>

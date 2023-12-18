@@ -33,12 +33,14 @@ export interface Project {
   renderableData: RenderableData;
 }
 
+export interface ResumeTime {}
+
 export interface WorkHistory {
   id: string;
   name: string;
   title: string;
-  startTime: string;
-  endTime: string;
+  startTime: Date;
+  endTime: Date | null;
   renderableData: RenderableData;
   experiences: string[];
   skillIds: string[];

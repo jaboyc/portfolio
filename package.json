@@ -1,13 +1,20 @@
 {
   "name": "portfolio",
   "version": "0.1.0",
-  "type": "module",
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "lint": "next lint",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "prisma:dev:migrate": "dotenv -e .env.development -- npx prisma migrate dev",
+    "prisma:dev:migrateCreateOnly": "dotenv -e .env.development -- npx prisma migrate dev --create-only",
+    "prisma:dev:studio": "dotenv -e .env.development -- npx prisma studio",
+    "prisma:dev:seed": "dotenv -e .env.development -- npx tsx scripts/seed.ts",
+    "prisma:prod:migrate": "dotenv -e .env.production -- npx prisma migrate dev",
+    "prisma:prod:migrateCreateOnly": "dotenv -e .env.production -- npx prisma migrate dev --create-only",
+    "prisma:prod:studio": "dotenv -e .env.production -- npx prisma studio",
+    "prisma:prod:seed": "dotenv -e .env.production -- npx tsx scripts/seed.ts"
   },
   "dependencies": {
     "@adminjs/cli": "^1.0.4",
@@ -17,13 +24,14 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@prisma/client": "^5.7.0",
     "@vercel/analytics": "^1.1.1",
+    "dotenv-cli": "^7.3.0",
     "lodash": "^4.17.21",
+    "moment": "^2.29.4",
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18",
     "sharp": "^0.33.1",
-    "tippy.js": "^6.3.7",
-    "ts-node": "^10.9.2"
+    "tippy.js": "^6.3.7"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.202",
@@ -37,6 +45,7 @@
     "prettier": "^3.1.1",
     "prisma": "^5.7.0",
     "tailwindcss": "^3.3.0",
+    "tsx": "^4.6.2",
     "typescript": "^5.3.3"
   }
 }

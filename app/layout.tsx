@@ -5,6 +5,12 @@ import Link from 'next/link';
 import Head from 'next/head';
 import { Analytics } from '@vercel/analytics/react';
 
+import { config, library } from '@fortawesome/fontawesome-svg-core';
+import '@fortawesome/fontawesome-svg-core/styles.css';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { fab } from '@fortawesome/free-brands-svg-icons';
+config.autoAddCss = false;
+
 export const metadata: Metadata = {
   title: 'Jake Boychenko',
   description: "Jake Boychenko's Portfolio.",
@@ -18,6 +24,8 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  library.add(fas, fab);
+
   return (
     <html lang="en">
       <Head>

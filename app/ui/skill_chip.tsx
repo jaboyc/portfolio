@@ -1,7 +1,11 @@
-import { Skill } from '@/src/resume';
 import Renderable from '@/src/ui/Renderable';
+import { Renderable as RenderableData, Skill } from '@prisma/client';
 
-export default function SkillChip({ skill }: { skill: Skill }) {
+export default function SkillChip({
+  skill,
+}: {
+  skill: Skill & { renderable: RenderableData };
+}) {
   return (
     <div>
       {/* Empty `div` for Tippy */}
@@ -13,7 +17,7 @@ export default function SkillChip({ skill }: { skill: Skill }) {
         style={{ background: skill.color }}
       >
         <Renderable
-          renderableData={skill.renderableData}
+          renderable={skill.renderable}
           width={21}
           height={21}
           color={skill.foregroundColor}

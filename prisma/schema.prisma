@@ -6,22 +6,73 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
-  posts Post[]
+model Renderable {
+  id       Int     @id @default(autoincrement())
+  src      String?
+  alt      String?
+  pack     String?
+  iconPack String?
+  icon     String?
+
+  skills      Skill[]
+  projects    Project[]
+  resumes     Resume[]
+  WorkHistory WorkHistory[]
 }
 
-model Post {
-  id        Int     @id @default(autoincrement())
-  title     String
-  content   String?
-  published Boolean @default(false)
-  author    User    @relation(fields: [authorId], references: [id])
-  authorId  Int
+model Resume {
+  id           Int           @id @default(autoincrement())
+  linkedInUrl  String
+  email        String
+  skills       Skill[]
+  projects     Project[]
+  workHistory  WorkHistory[]
+  renderable   Renderable    @relation(fields: [renderableId], references: [id])
+  renderableId Int
+}
+
+model Skill {
+  id              Int           @id @default(autoincrement())
+  resume          Resume?       @relation(fields: [resumeId], references: [id])
+  resumeId        Int?
+  category        String
+  name            String
+  description     String
+  renderable      Renderable    @relation(fields: [renderableId], references: [id])
+  renderableId    Int
+  color           String
+  foregroundColor String
+  projects        Project[]
+  workHistories   WorkHistory[]
+}
+
+model Project {
+  id               Int        @id @default(autoincrement())
+  renderable       Renderable @relation(fields: [renderableId], references: [id])
+  renderableId     Int
+  name             String
+  shortDescription String
+  color            String
+  foregroundColor  String
+  skills           Skill[]
+  resume           Resume?    @relation(fields: [resumeId], references: [id])
+  resumeId         Int?
+}
+
+model WorkHistory {
+  id           Int        @id @default(autoincrement())
+  renderable   Renderable @relation(fields: [renderableId], references: [id])
+  renderableId Int
+  name         String
+  title        String
+  startTime    DateTime
+  endTime      DateTime?
+  lineItems    String[]
+  skills       Skill[]
+  resume       Resume?    @relation(fields: [resumeId], references: [id])
+  resumeId     Int?
 }
