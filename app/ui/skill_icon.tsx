@@ -1,4 +1,4 @@
-import Renderable from '@/app/ui/Renderable';
+import Renderable from '@/app/ui/renderable';
 import { Renderable as RenderableData, Skill } from '@prisma/client';
 
 export default function SkillIcon({

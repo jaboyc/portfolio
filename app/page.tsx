@@ -1,4 +1,4 @@
-import Renderable from '@/app/ui/Renderable';
+import Renderable from '@/app/ui/renderable';
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope, faFile } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
