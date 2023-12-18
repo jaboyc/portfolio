@@ -7,6 +7,9 @@ import Head from 'next/head';
 export const metadata: Metadata = {
   title: 'Jake Boychenko',
   description: "Jake Boychenko's Portfolio.",
+  icons: {
+    icon: '/favicon.png',
+  },
 };
 
 export default function RootLayout({
