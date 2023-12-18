@@ -15,11 +15,17 @@ export default async function Home() {
     include: {
       renderable: true,
       skills: {
+        orderBy: {
+          id: 'asc',
+        },
         include: {
           renderable: true,
         },
       },
       projects: {
+        orderBy: {
+          id: 'asc',
+        },
         include: {
           renderable: true,
           skills: {
@@ -30,6 +36,9 @@ export default async function Home() {
         },
       },
       workHistory: {
+        orderBy: {
+          id: 'asc',
+        },
         include: {
           renderable: true,
           skills: {
@@ -52,24 +61,18 @@ export default async function Home() {
               JAKE BOYCHENKO
             </a>
           </h5>
-          <div className="md:block hidden grow"></div>
+          <div className="sm:block hidden grow"></div>
           <a
-            className="md:block hidden no-underline font-outfit text-[24px] font-thin tracking-widest text-[#ffffffc0] transition hover:text-white"
+            className="sm:block hidden no-underline font-outfit text-[24px] font-thin tracking-widest text-[#ffffffc0] transition hover:text-white"
             href="#skills"
           >
             Skills
           </a>
           <a
-            className="md:block hidden no-underline font-outfit text-[24px] font-thin tracking-widest text-[#ffffffc0] transition hover:text-white"
+            className="sm:block hidden no-underline font-outfit text-[24px] font-thin tracking-widest text-[#ffffffc0] transition hover:text-white"
             href="#experience"
           >
             Experience
-          </a>
-          <a
-            className="md:block hidden no-underline font-outfit text-[24px] font-thin tracking-widest text-[#ffffffc0] transition hover:text-white"
-            href="#"
-          >
-            Blog
           </a>
         </div>
         <div className="px-8 py-12 md:px-32 lg:px-60">
@@ -84,7 +87,7 @@ export default async function Home() {
             width={288}
             height={288}
             color="white"
-            className="flex-shrink-0 rounded-full"
+            className="flex-shrink-0 rounded-full "
           />
           <div className="flex basis-[500px] flex-grow flex-col min-w-[60px] justify-around gap-4">
             <p className="text-white">
@@ -116,7 +119,7 @@ export default async function Home() {
                     icon={faLinkedin}
                     color="white"
                   />
-                  <p className="text-white">LinkedIn</p>
+                  <p className="text-white">Connect</p>
                 </button>
               </a>
               <a
@@ -176,10 +179,10 @@ export default async function Home() {
               return (
                 <div
                   key={project.id}
-                  className="flex flex-col w-[260px] h-[320px] items-center justify-start gap-2 p-2 rounded-lg"
+                  className="flex flex-col w-[260px] h-[350px] items-center justify-start gap-2 p-2 rounded-lg"
                   style={{ background: project.color }}
                 >
-                  <div className="flex flex-row justify-center items-center bg-white rounded-full w-[50px] h-[50px] p-2 ">
+                  <div className="flex flex-row justify-center items-center bg-white rounded-full  p-4 ">
                     <Renderable
                       renderable={project.renderable}
                       width={50}

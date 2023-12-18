@@ -40,7 +40,7 @@ a:not(:has(button)) {
 
 .button-text,
 a > button > p {
-  @apply font-inter font-bold text-[18px];
+  @apply font-inter font-bold text-[15px];
 }
 
 ul {

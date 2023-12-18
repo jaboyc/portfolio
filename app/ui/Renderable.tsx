@@ -23,7 +23,13 @@ export default function Renderable({
         alt={renderable.alt}
         width={width * 4}
         height={height * 4}
-        style={{ objectFit: 'contain', width: width, height: height }}
+        style={{
+          objectFit: 'contain',
+          width: width,
+          height: height,
+          minWidth: width,
+          minHeight: height,
+        }}
         className={className}
       />
     );
@@ -34,7 +40,7 @@ export default function Renderable({
         icon={[renderable.iconPack as IconPrefix, renderable.icon as IconName]}
         width={width}
         height={height}
-        style={{ color }}
+        style={{ color, width, height }}
         className={className}
       />
     );
