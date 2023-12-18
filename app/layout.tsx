@@ -3,6 +3,7 @@ import './globals.css';
 import Script from 'next/script';
 import Link from 'next/link';
 import Head from 'next/head';
+import { Analytics } from '@vercel/analytics/react';
 
 export const metadata: Metadata = {
   title: 'Jake Boychenko',
@@ -37,7 +38,10 @@ export default function RootLayout({
         src="https://kit.fontawesome.com/fbadad80a0.js"
         crossOrigin="anonymous"
       />
-      <body className="bg-background">{children}</body>
+      <body className="bg-background">
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
