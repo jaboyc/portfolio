@@ -1,15 +1,30 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import Script from 'next/script';
-import Link from 'next/link';
-import Head from 'next/head';
 import { Analytics } from '@vercel/analytics/react';
+
+import { Inter, Outfit, Roboto } from 'next/font/google';
 
 import { config, library } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { fab } from '@fortawesome/free-brands-svg-icons';
 config.autoAddCss = false;
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+});
+
+const outfit = Outfit({
+  subsets: ['latin'],
+  variable: '--font-outfit',
+});
+
+const roboto = Outfit({
+  subsets: ['latin'],
+  variable: '--font-roboto',
+});
 
 export const metadata: Metadata = {
   title: 'Jake Boychenko',
@@ -28,25 +43,13 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <Head>
-        <Link
-          href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap"
-          rel="stylesheet"
-        />
-        <Link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap"
-          rel="stylesheet"
-        />
-        <Link
-          href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap"
-          rel="stylesheet"
-        />
-      </Head>
       <Script
         src="https://kit.fontawesome.com/fbadad80a0.js"
         crossOrigin="anonymous"
       />
-      <body className="bg-background">
+      <body
+        className={`bg-background ${inter.variable} ${outfit.variable} ${roboto.variable}`}
+      >
         {children}
         <Analytics />
       </body>

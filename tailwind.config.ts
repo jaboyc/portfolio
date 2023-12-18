@@ -16,9 +16,9 @@ const config: Config = {
         background: 'var(--background-color)',
       },
       fontFamily: {
-        outfit: ['Outfit', 'sans-serif'],
-        roboto: ['Roboto', 'sans-serif'],
-        inter: ['Inter', 'sans-serif'],
+        outfit: ['var(--font-outfit)'],
+        roboto: ['var(--font-roboto)'],
+        inter: ['var(--font-inter)'],
       },
     },
   },
