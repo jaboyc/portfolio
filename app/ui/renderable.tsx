@@ -26,7 +26,7 @@ export default function Renderable({
         width={width * 4}
         height={(height ?? width) * 4}
         style={{
-          objectFit: fit ?? 'cover',
+          objectFit: fit ?? 'contain',
           width: width,
           height: height ?? 'auto',
           minWidth: 0,

@@ -46,3 +46,7 @@ a > button > p {
 ul {
   list-style-type: disc;
 }
+
+section {
+  @apply flex flex-col gap-4 px-8 py-12 md:px-16 lg:px-24;
+}
