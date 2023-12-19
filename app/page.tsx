@@ -10,6 +10,8 @@ import SkillChip from './ui/skill_chip';
 import SkillIcon from './ui/skill_icon';
 import Footer from './ui/footer';
 
+export const revalidate = 60 * 60 * 12;
+
 export default async function Home() {
   const prisma = new PrismaClient();
   const resume = await prisma.resume.findFirstOrThrow({
@@ -25,7 +27,7 @@ export default async function Home() {
       },
       projects: {
         orderBy: {
-          id: 'asc',
+          order: 'asc',
         },
         include: {
           renderable: true,
@@ -192,13 +194,14 @@ export default async function Home() {
           </p>
           <div className="flex flex-wrap py-4 gap-x-2 gap-y-8">
             {resume.projects.map((project) => {
+              const projectUrl = `/project/${project.slug}`;
               return (
                 <div
-                  key={project.id}
+                  key={project.slug}
                   className="flex flex-wrap flex-grow basis-[550px] justify-center items-center gap-4 "
                 >
                   <div className="min-w-[200px]">
-                    <a href="#">
+                    <a href={projectUrl}>
                       <Renderable
                         renderable={project.renderable}
                         width={200}
@@ -212,7 +215,7 @@ export default async function Home() {
                     <p className="subbody text-white">
                       {project.shortDescription}
                     </p>
-                    <a className="text-primary" href="#">
+                    <a className="text-primary" href={projectUrl}>
                       Learn More
                     </a>
                     <div className="flex-grow" />
@@ -304,9 +307,9 @@ export default async function Home() {
             essence of my project development, my approach to architectural
             design, and the secrets to maintaining lasting client relationships.
             This blog is a window into my professional journey, offering a blend
-            of technical expertise and client-centric strategies. Whether you're
-            in the tech industry or simply curious, there's something here for
-            you.
+            of technical expertise and client-centric strategies. Whether
+            you&apos;re in the tech industry or simply curious, there&apos;s
+            something here for you.
           </p>
           <div className="flex flex-col items-center justify-center px-4 py-2 gap-8">
             {resume.blogPost.map((blogPost) => {

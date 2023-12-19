@@ -7,13 +7,13 @@ export const revalidate = 60 * 60 * 12;
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const prisma = new PrismaClient();
-  const blogPost = await prisma.blogPost.findUnique({
+  const project = await prisma.project.findUnique({
     where: {
       slug: params.slug,
     },
   });
 
-  if (!blogPost) {
+  if (!project) {
     notFound();
   }
 
@@ -21,11 +21,10 @@ export default async function Page({ params }: { params: { slug: string } }) {
     <>
       <Header />
       <section>
-        <h2 className="text-start text-white">{blogPost.title}</h2>
-        <p className="text-start text-primary">{blogPost.subtitle}</p>
+        <h2 className="text-start text-white">{project.name}</h2>
       </section>
       <section className="bg-white">
-        <p className="subbody">{blogPost.body}</p>
+        <p className="subbody">{project.shortDescription}</p>
       </section>
       <Footer />
     </>

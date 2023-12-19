@@ -53,7 +53,8 @@ model Skill {
 }
 
 model Project {
-  id               Int        @id @default(autoincrement())
+  slug             String     @id
+  order            Int
   renderable       Renderable @relation(fields: [renderableId], references: [id])
   renderableId     Int
   name             String

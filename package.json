@@ -11,6 +11,8 @@
     "prisma:dev:migrateCreateOnly": "dotenv -e .env.development -- npx prisma migrate dev --create-only",
     "prisma:dev:studio": "dotenv -e .env.development -- npx prisma studio",
     "prisma:dev:seed": "dotenv -e .env.development -- npx tsx scripts/seed.ts",
+    "db:dev:dump": "docker exec -it portfolio-db-1 pg_dump -U root -d portfolio --data-only > data_dump.sql",
+    "db:dev:copy": "docker exec -i portfolio-db-1 psql -U root -d portfolio < data_dump.sql",
     "prisma:prod:migrate": "dotenv -e .env.production -- npx prisma migrate dev",
     "prisma:prod:migrateCreateOnly": "dotenv -e .env.production -- npx prisma migrate dev --create-only",
     "prisma:prod:studio": "dotenv -e .env.production -- npx prisma studio",
