@@ -48,6 +48,14 @@ export default async function Home() {
           },
         },
       },
+      blogPost: {
+        orderBy: {
+          createdTime: 'desc',
+        },
+        include: {
+          renderable: true,
+        },
+      },
     },
   });
   const skillsByCategory = groupBy(resume.skills, (skill) => skill.category);
@@ -61,21 +69,27 @@ export default async function Home() {
               JAKE BOYCHENKO
             </a>
           </h5>
-          <div className="sm:block hidden grow"></div>
+          <div className="md:block hidden grow"></div>
           <a
-            className="sm:block hidden no-underline font-outfit text-[24px] font-thin tracking-widest text-[#ffffffc0] transition hover:text-white"
+            className="md:block hidden no-underline font-outfit text-[24px] font-thin tracking-widest text-[#ffffffc0] transition hover:text-white"
             href="#skills"
           >
             Skills
           </a>
           <a
-            className="sm:block hidden no-underline font-outfit text-[24px] font-thin tracking-widest text-[#ffffffc0] transition hover:text-white"
+            className="md:block hidden no-underline font-outfit text-[24px] font-thin tracking-widest text-[#ffffffc0] transition hover:text-white"
             href="#experience"
           >
             Experience
           </a>
+          <a
+            className="md:block hidden no-underline font-outfit text-[24px] font-thin tracking-widest text-[#ffffffc0] transition hover:text-white"
+            href="#blog"
+          >
+            Blog
+          </a>
         </div>
-        <div className="px-8 py-12 md:px-32 lg:px-60">
+        <div className="px-8 py-12 md:px-24">
           <h1 className="text-white text-[38px] uppercase text-center md:text-[47px]">
             Innovative Software Engineer with a Flair for{' '}
             <span className="text-primary">Full-Stack Solutions</span>
@@ -85,7 +99,6 @@ export default async function Home() {
           <Renderable
             renderable={resume.renderable}
             width={288}
-            height={288}
             color="white"
             className="flex-shrink-0 rounded-full "
           />
@@ -132,7 +145,7 @@ export default async function Home() {
             </div>
           </div>
         </div>
-        <div className="flex flex-col gap-4 bg-white px-4 py-8 xl:px-48">
+        <div className="flex flex-col gap-4 bg-white px-4 py-8 md:px-12 xl:px-48">
           <h5 id="skills" className="text-black text-center scroll-m-28">
             Skills
           </h5>
@@ -162,7 +175,7 @@ export default async function Home() {
             })}
           </div>
         </div>
-        <div className="flex flex-col p-8 gap-4">
+        <div className="flex flex-col gap-4 px-4 py-8 md:px-12 xl:px-48">
           <h5 id="experience" className="text-center text-white scroll-m-28">
             Experience
           </h5>
@@ -260,7 +273,7 @@ export default async function Home() {
                         </p>
                       </div>
                     </div>
-                    <ul>
+                    <ul className="px-4">
                       {workHistory.lineItems.map((lineItem) => (
                         <li
                           key={lineItem.substring(3)}
@@ -275,6 +288,48 @@ export default async function Home() {
                         return <SkillIcon key={skill.id} skill={skill} />;
                       })}
                     </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        <div className="flex flex-col gap-8 bg-white px-4 py-8 md:px-12 xl:px-48">
+          <h5 id="blog" className="text-black text-center scroll-m-28">
+            Blog
+          </h5>
+          <p className="text-black px-16">
+            Dive into my world of software engineering, where I share the
+            essence of my project development, my approach to architectural
+            design, and the secrets to maintaining lasting client relationships.
+            This blog is a window into my professional journey, offering a blend
+            of technical expertise and client-centric strategies. Whether you're
+            in the tech industry or simply curious, there's something here for
+            you.
+          </p>
+          <div className="flex flex-col items-center justify-center py-2 gap-4 px-4">
+            {resume.blogPost.map((blogPost) => {
+              return (
+                <div
+                  key={blogPost.slug}
+                  className="flex flex-wrap items-center justify-center gap-6"
+                >
+                  <div className="min-w-[250px] flex-shrink-0">
+                    <a href="#">
+                      <Renderable
+                        renderable={blogPost.renderable}
+                        width={280}
+                        height={200}
+                        color={'blue'}
+                      />
+                    </a>
+                  </div>
+                  <div className="flex flex-col flex-grow basis-[450px] gap-2">
+                    <h6>{blogPost.title}</h6>
+                    <p className="text-primary">{blogPost.subtitle}</p>
+                    <p className="subbody">{blogPost.shortDescription}</p>
+                    <div className="flex-grow" />
+                    <a href="#">Read More</a>
                   </div>
                 </div>
               );

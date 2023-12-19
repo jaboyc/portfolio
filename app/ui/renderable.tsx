@@ -8,12 +8,14 @@ export default function Renderable({
   width,
   height,
   color,
+  fit,
   className,
 }: {
   renderable: Renderable;
   width: number;
-  height: number;
+  height?: number;
   color: string;
+  fit?: 'fill' | 'contain' | 'cover';
   className?: string;
 }) {
   if (renderable.src && renderable.alt) {
@@ -22,11 +24,11 @@ export default function Renderable({
         src={renderable.src}
         alt={renderable.alt}
         width={width * 4}
-        height={height * 4}
+        height={(height ?? width) * 4}
         style={{
-          objectFit: 'contain',
+          objectFit: fit ?? 'cover',
           width: width,
-          height: 'auto',
+          height: height ?? 'auto',
           minWidth: 0,
         }}
         className={className}

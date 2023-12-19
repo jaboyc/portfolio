@@ -21,7 +21,8 @@ model Renderable {
   skills      Skill[]
   projects    Project[]
   resumes     Resume[]
-  WorkHistory WorkHistory[]
+  workHistory WorkHistory[]
+  blogPost    BlogPost[]
 }
 
 model Resume {
@@ -33,6 +34,7 @@ model Resume {
   workHistory  WorkHistory[]
   renderable   Renderable    @relation(fields: [renderableId], references: [id])
   renderableId Int
+  blogPost     BlogPost[]
 }
 
 model Skill {
@@ -59,8 +61,8 @@ model Project {
   color            String
   foregroundColor  String
   skills           Skill[]
-  resume           Resume?    @relation(fields: [resumeId], references: [id])
-  resumeId         Int?
+  resume           Resume     @relation(fields: [resumeId], references: [id])
+  resumeId         Int
 }
 
 model WorkHistory {
@@ -73,6 +75,19 @@ model WorkHistory {
   endTime      DateTime?
   lineItems    String[]
   skills       Skill[]
-  resume       Resume?    @relation(fields: [resumeId], references: [id])
-  resumeId     Int?
+  resume       Resume     @relation(fields: [resumeId], references: [id])
+  resumeId     Int
+}
+
+model BlogPost {
+  slug             String     @id
+  renderable       Renderable @relation(fields: [renderableId], references: [id])
+  renderableId     Int
+  title            String
+  subtitle         String
+  shortDescription String
+  body             String
+  createdTime      DateTime   @default(now())
+  resume           Resume     @relation(fields: [resumeId], references: [id])
+  resumeId         Int
 }
