@@ -11,7 +11,11 @@
 }
 
 h1 {
-  @apply font-outfit font-bold text-[47px] tracking-wider;
+  @apply font-outfit font-bold text-[38px] md:text-[47px] tracking-wider;
+}
+
+h2 {
+  @apply font-outfit font-bold text-[30px] md:text-[38px] tracking-wider;
 }
 
 h5 {

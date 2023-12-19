@@ -8,6 +8,7 @@ import Script from 'next/script';
 import Renderable from './ui/renderable';
 import SkillChip from './ui/skill_chip';
 import SkillIcon from './ui/skill_icon';
+import Footer from './ui/footer';
 
 export default async function Home() {
   const prisma = new PrismaClient();
@@ -92,7 +93,7 @@ export default async function Home() {
       </header>
       <main>
         <section>
-          <h1 className="text-white text-[38px] uppercase text-center md:text-[47px]">
+          <h1 className="text-white uppercase text-center">
             Innovative Software Engineer with a Flair for{' '}
             <span className="text-primary">Full-Stack Solutions</span>
           </h1>
@@ -309,13 +310,14 @@ export default async function Home() {
           </p>
           <div className="flex flex-col items-center justify-center px-4 py-2 gap-8">
             {resume.blogPost.map((blogPost) => {
+              const blogPostUrl = `/blog/${blogPost.slug}`;
               return (
                 <div
                   key={blogPost.slug}
                   className="flex flex-wrap items-center justify-center gap-6"
                 >
                   <div className="min-w-[250px] flex-shrink-0">
-                    <a href="#">
+                    <a href={blogPostUrl}>
                       <Renderable
                         renderable={blogPost.renderable}
                         width={280}
@@ -330,7 +332,7 @@ export default async function Home() {
                     <p className="text-primary">{blogPost.subtitle}</p>
                     <p className="subbody">{blogPost.shortDescription}</p>
                     <div className="flex-grow" />
-                    <a href="#">Read More</a>
+                    <a href={blogPostUrl}>Read More</a>
                   </div>
                 </div>
               );
@@ -338,29 +340,7 @@ export default async function Home() {
           </div>
         </section>
       </main>
-      <footer className="flex flex-row items-center justify-evenly bg-black h-16">
-        <a
-          className="subbody text-primary"
-          style={{ fontSize: 12 }}
-          href="mailto:contact@jakeboychenko.com"
-        >
-          contact@jakeboychenko.com
-        </a>
-        <div className="flex flex-col justify-center">
-          <p
-            className="subbody text-white text-center opacity-80"
-            style={{ fontSize: 12 }}
-          >
-            Built with Next.js
-          </p>
-          <p
-            className="subbody text-white text-center opacity-80"
-            style={{ fontSize: 12 }}
-          >
-            View it on Github <a href="#">here</a>
-          </p>
-        </div>
-      </footer>
+      <Footer />
 
       <Script
         src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"
