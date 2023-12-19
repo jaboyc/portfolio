@@ -176,7 +176,7 @@ export default async function Home() {
             represent my commitment to excellence in full-stack development and
             user-centric design.
           </p>
-          <div className="flex flex-wrap items-center gap-x-2 gap-y-6">
+          <div className="flex flex-wrap gap-x-2 gap-y-6">
             {resume.projects.map((project) => {
               return (
                 <div
@@ -184,14 +184,16 @@ export default async function Home() {
                   className="flex flex-wrap flex-grow basis-[550px] justify-center gap-4 p-2"
                 >
                   <div className="min-w-[200px]">
-                    <Renderable
-                      renderable={project.renderable}
-                      width={200}
-                      height={200}
-                      color={project.foregroundColor}
-                    />
+                    <a href="#" className="transition hover:brightness-105">
+                      <Renderable
+                        renderable={project.renderable}
+                        width={200}
+                        height={200}
+                        color={project.foregroundColor}
+                      />
+                    </a>
                   </div>
-                  <div className="flex flex-col flex-grow basis-[100px] gap-2 px-2 py-4">
+                  <div className="flex flex-col flex-grow flex-shrink min-w-[220px] basis-[220px] gap-2 px-2 py-4">
                     <h6 className="text-white text-e">{project.name}</h6>
                     <p className="subbody text-white">
                       {project.shortDescription}

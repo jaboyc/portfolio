@@ -35,7 +35,7 @@ button {
 }
 
 a:not(:has(button)) {
-  @apply text-primary underline;
+  @apply text-primary underline transition hover:brightness-110;
 }
 
 .button-text,
