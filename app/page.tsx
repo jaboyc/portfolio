@@ -1,4 +1,3 @@
-import Renderable from '@/app/ui/renderable';
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope, faFile } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,6 +5,7 @@ import { PrismaClient } from '@prisma/client';
 import groupBy from 'lodash/groupBy';
 import moment from 'moment';
 import Script from 'next/script';
+import Renderable from './ui/renderable';
 import SkillChip from './ui/skill_chip';
 import SkillIcon from './ui/skill_icon';
 
