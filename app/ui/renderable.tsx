@@ -26,9 +26,8 @@ export default function Renderable({
         style={{
           objectFit: 'contain',
           width: width,
-          height: height,
-          minWidth: width,
-          minHeight: height,
+          height: 'auto',
+          minWidth: 0,
         }}
         className={className}
       />

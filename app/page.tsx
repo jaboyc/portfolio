@@ -162,11 +162,13 @@ export default async function Home() {
             })}
           </div>
         </div>
-        <div className="flex flex-col p-8 md:px-32 xl:px-72 gap-4">
+        <div className="flex flex-col p-8 gap-4">
           <h5 id="experience" className="text-center text-white scroll-m-28">
             Experience
           </h5>
-          <h6 className="text-center text-primary">Projects</h6>
+          <h6 className="text-center text-primary md:px-24 xl:px-64">
+            Projects
+          </h6>
           <p className="text-white">
             Explore my portfolio of distinctive projects, each showcasing a
             unique blend of technical skills and creative solutions. From
@@ -174,36 +176,35 @@ export default async function Home() {
             represent my commitment to excellence in full-stack development and
             user-centric design.
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-2">
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-6">
             {resume.projects.map((project) => {
               return (
                 <div
                   key={project.id}
-                  className="flex flex-col w-[260px] h-[350px] items-center justify-start gap-2 p-2 rounded-lg"
-                  style={{ background: project.color }}
+                  className="flex flex-wrap flex-grow basis-[550px] justify-center gap-4 p-2"
                 >
-                  <div className="flex flex-row justify-center items-center bg-white rounded-full  p-4 ">
+                  <div className="min-w-[200px]">
                     <Renderable
                       renderable={project.renderable}
-                      width={50}
-                      height={50}
+                      width={200}
+                      height={200}
                       color={project.foregroundColor}
                     />
                   </div>
-                  <h6 style={{ color: project.foregroundColor }}>
-                    {project.name}
-                  </h6>
-                  <p
-                    className="subbody"
-                    style={{ color: project.foregroundColor }}
-                  >
-                    {project.shortDescription}
-                  </p>
-                  <div className="flex-grow" />
-                  <div className="flex flex-row gap-2">
-                    {project.skills.map((skill) => {
-                      return <SkillIcon key={skill.id} skill={skill} />;
-                    })}
+                  <div className="flex flex-col flex-grow basis-[100px] gap-2 px-2 py-4">
+                    <h6 className="text-white text-e">{project.name}</h6>
+                    <p className="subbody text-white">
+                      {project.shortDescription}
+                    </p>
+                    <a className="text-primary" href="#">
+                      Learn More
+                    </a>
+                    <div className="flex-grow" />
+                    <div className="flex flex-row gap-2">
+                      {project.skills.map((skill) => {
+                        return <SkillIcon key={skill.id} skill={skill} />;
+                      })}
+                    </div>
                   </div>
                 </div>
               );
