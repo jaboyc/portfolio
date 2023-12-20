@@ -60,8 +60,6 @@ model Project {
   name             String
   shortDescription String
   body             String
-  color            String
-  foregroundColor  String
   skills           Skill[]
   resume           Resume     @relation(fields: [resumeId], references: [id])
   resumeId         Int

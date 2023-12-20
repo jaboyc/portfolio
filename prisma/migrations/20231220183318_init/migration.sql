@@ -41,9 +41,11 @@ CREATE TABLE "Project" (
     "renderableId" INTEGER NOT NULL,
     "name" TEXT NOT NULL,
     "shortDescription" TEXT NOT NULL,
+    "body" TEXT NOT NULL,
     "color" TEXT NOT NULL,
     "foregroundColor" TEXT NOT NULL,
     "resumeId" INTEGER NOT NULL,
+    "keywords" TEXT[],
 
     CONSTRAINT "Project_pkey" PRIMARY KEY ("slug")
 );
@@ -72,6 +74,7 @@ CREATE TABLE "BlogPost" (
     "body" TEXT NOT NULL,
     "createdTime" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "resumeId" INTEGER NOT NULL,
+    "keywords" TEXT[],
 
     CONSTRAINT "BlogPost_pkey" PRIMARY KEY ("slug")
 );
