@@ -59,11 +59,13 @@ model Project {
   renderableId     Int
   name             String
   shortDescription String
+  body             String
   color            String
   foregroundColor  String
   skills           Skill[]
   resume           Resume     @relation(fields: [resumeId], references: [id])
   resumeId         Int
+  keywords         String[]
 }
 
 model WorkHistory {
@@ -91,4 +93,5 @@ model BlogPost {
   createdTime      DateTime   @default(now())
   resume           Resume     @relation(fields: [resumeId], references: [id])
   resumeId         Int
+  keywords         String[]
 }
