@@ -14,7 +14,7 @@ export default function Renderable({
   renderable: Renderable;
   width: number;
   height?: number;
-  color: string;
+  color?: string;
   fit?: 'fill' | 'contain' | 'cover';
   className?: string;
 }) {
@@ -41,7 +41,7 @@ export default function Renderable({
         icon={[renderable.iconPack as IconPrefix, renderable.icon as IconName]}
         width={width}
         height={height}
-        style={{ color, width, height }}
+        style={{ color: color ?? 'white', width, height }}
         className={className}
       />
     );

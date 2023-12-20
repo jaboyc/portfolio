@@ -103,7 +103,6 @@ export default async function Home() {
             <Renderable
               renderable={resume.renderable}
               width={288}
-              color="white"
               className="flex-shrink-0 rounded-full "
             />
             <div className="flex flex-col gap-4 basis-[500px] flex-grow justify-center">
@@ -125,7 +124,7 @@ export default async function Home() {
               <div className="flex flex-wrap gap-4 items-center">
                 <a href="/JakeBoychenkoResume.pdf" target="_blank">
                   <button className="flex bg-primary rounded-xl px-3 py-2 gap-2 items-center transition hover:brightness-110 hover:scale-[101%]">
-                    <FontAwesomeIcon height={16} icon={faFile} color="black" />
+                    <FontAwesomeIcon height={16} icon={faFile} />
                     <p className="button-text text-black">Download Resume</p>
                   </button>
                 </a>
@@ -206,7 +205,6 @@ export default async function Home() {
                         renderable={project.renderable}
                         width={200}
                         height={200}
-                        color={project.foregroundColor}
                       />
                     </a>
                   </div>
@@ -264,7 +262,6 @@ export default async function Home() {
                           renderable={workHistory.renderable}
                           width={36}
                           height={36}
-                          color={'white'}
                         />
                       </div>
                       <div className="flex flex-col items-start flex-grow">
@@ -325,7 +322,6 @@ export default async function Home() {
                         renderable={blogPost.renderable}
                         width={280}
                         height={200}
-                        color="blue"
                         fit="cover"
                       />
                     </a>

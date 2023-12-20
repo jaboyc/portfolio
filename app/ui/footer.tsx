@@ -23,7 +23,10 @@ export default async function Footer() {
           className="subbody text-white text-center opacity-80"
           style={{ fontSize: 12 }}
         >
-          View it on Github <a href="#">here</a>
+          View it on Github{' '}
+          <a href="https://github.com/jaboyc/portfolio" target="_blank">
+            here
+          </a>
         </p>
       </div>
     </footer>
