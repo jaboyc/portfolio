@@ -1,7 +1,7 @@
 import Footer from '@/app/ui/footer';
 import Header from '@/app/ui/header';
 import Renderable from '@/app/ui/renderable';
-import { PrismaClient } from '@prisma/client';
+import prisma from '@/lib/prisma';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
@@ -14,7 +14,6 @@ type Props = {
 export async function generateMetadata({
   params,
 }: Props): Promise<Metadata | null> {
-  const prisma = new PrismaClient();
   const project = await prisma.project.findUnique({
     where: {
       slug: params.slug,
@@ -34,7 +33,6 @@ export async function generateMetadata({
 }
 
 export default async function Page({ params }: { params: { slug: string } }) {
-  const prisma = new PrismaClient();
   const project = await prisma.project.findUnique({
     where: {
       slug: params.slug,

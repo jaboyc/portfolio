@@ -9,11 +9,11 @@ import Renderable from './ui/renderable';
 import SkillChip from './ui/skill_chip';
 import SkillIcon from './ui/skill_icon';
 import Footer from './ui/footer';
+import prisma from '@/lib/prisma';
 
 export const revalidate = 60 * 60 * 12;
 
 export default async function Home() {
-  const prisma = new PrismaClient();
   const resume = await prisma.resume.findFirstOrThrow({
     include: {
       renderable: true,

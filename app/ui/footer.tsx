@@ -1,7 +1,6 @@
-import { PrismaClient } from '@prisma/client';
+import prisma from '@/lib/prisma';
 
 export default async function Footer() {
-  const prisma = new PrismaClient();
   const resume = await prisma.resume.findFirstOrThrow();
 
   return (
