@@ -1,0 +1,342 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "Renderable": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "src": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "alt": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "pack": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "iconPack": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "icon": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "skills": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Skill"
+          }
+        },
+        "projects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Project"
+          }
+        },
+        "resumes": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Resume"
+          }
+        },
+        "workHistory": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/WorkHistory"
+          }
+        },
+        "blogPost": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BlogPost"
+          }
+        }
+      },
+      "required": []
+    },
+    "Resume": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "linkedInUrl": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "skills": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Skill"
+          }
+        },
+        "projects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Project"
+          }
+        },
+        "workHistory": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/WorkHistory"
+          }
+        },
+        "renderable": {
+          "$ref": "#/definitions/Renderable"
+        },
+        "blogPost": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/BlogPost"
+          }
+        }
+      },
+      "required": [
+        "linkedInUrl",
+        "email",
+        "renderableId"
+      ]
+    },
+    "Skill": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "resume": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/Resume"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "category": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "renderable": {
+          "$ref": "#/definitions/Renderable"
+        },
+        "color": {
+          "type": "string"
+        },
+        "foregroundColor": {
+          "type": "string"
+        },
+        "projects": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Project"
+          }
+        },
+        "workHistories": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/WorkHistory"
+          }
+        }
+      },
+      "required": [
+        "category",
+        "name",
+        "description",
+        "renderableId",
+        "color",
+        "foregroundColor"
+      ]
+    },
+    "Project": {
+      "type": "object",
+      "properties": {
+        "slug": {
+          "type": "string"
+        },
+        "order": {
+          "type": "integer"
+        },
+        "renderable": {
+          "$ref": "#/definitions/Renderable"
+        },
+        "name": {
+          "type": "string"
+        },
+        "shortDescription": {
+          "type": "string"
+        },
+        "body": {
+          "type": "string"
+        },
+        "skills": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Skill"
+          }
+        },
+        "resume": {
+          "$ref": "#/definitions/Resume"
+        },
+        "keywords": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "slug",
+        "order",
+        "renderableId",
+        "name",
+        "shortDescription",
+        "body",
+        "resumeId",
+        "keywords"
+      ]
+    },
+    "WorkHistory": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "renderable": {
+          "$ref": "#/definitions/Renderable"
+        },
+        "name": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "startTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "endTime": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "format": "date-time"
+        },
+        "lineItems": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "skills": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Skill"
+          }
+        },
+        "resume": {
+          "$ref": "#/definitions/Resume"
+        }
+      },
+      "required": [
+        "renderableId",
+        "name",
+        "title",
+        "startTime",
+        "lineItems",
+        "resumeId"
+      ]
+    },
+    "BlogPost": {
+      "type": "object",
+      "properties": {
+        "slug": {
+          "type": "string"
+        },
+        "renderable": {
+          "$ref": "#/definitions/Renderable"
+        },
+        "title": {
+          "type": "string"
+        },
+        "subtitle": {
+          "type": "string"
+        },
+        "shortDescription": {
+          "type": "string"
+        },
+        "body": {
+          "type": "string"
+        },
+        "createdTime": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "resume": {
+          "$ref": "#/definitions/Resume"
+        },
+        "keywords": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "slug",
+        "renderableId",
+        "title",
+        "subtitle",
+        "shortDescription",
+        "body",
+        "resumeId",
+        "keywords"
+      ]
+    }
+  },
+  "type": "object",
+  "properties": {
+    "renderable": {
+      "$ref": "#/definitions/Renderable"
+    },
+    "resume": {
+      "$ref": "#/definitions/Resume"
+    },
+    "skill": {
+      "$ref": "#/definitions/Skill"
+    },
+    "project": {
+      "$ref": "#/definitions/Project"
+    },
+    "workHistory": {
+      "$ref": "#/definitions/WorkHistory"
+    },
+    "blogPost": {
+      "$ref": "#/definitions/BlogPost"
+    }
+  }
+}

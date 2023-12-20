@@ -9,7 +9,7 @@ import Renderable from './ui/renderable';
 import SkillChip from './ui/skill_chip';
 import SkillIcon from './ui/skill_icon';
 import Footer from './ui/footer';
-import prisma from '@/lib/prisma';
+import prisma from '@/src/prisma';
 
 export const revalidate = 60 * 60 * 12;
 

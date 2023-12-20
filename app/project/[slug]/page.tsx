@@ -1,7 +1,7 @@
 import Footer from '@/app/ui/footer';
 import Header from '@/app/ui/header';
 import Renderable from '@/app/ui/renderable';
-import prisma from '@/lib/prisma';
+import prisma from '@/src/prisma';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
