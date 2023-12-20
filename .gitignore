@@ -36,4 +36,4 @@ yarn-error.log*
 next-env.d.ts
 
 # db
-data_dump.sql
+*data_dump.sql
