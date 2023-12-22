@@ -1,9 +1,9 @@
-import Footer from '@/app/ui/footer';
-import Header from '@/app/ui/header';
-import JakeUser from '@/app/ui/jake_user';
-import Renderable from '@/app/ui/renderable';
-import SkillIcon from '@/app/ui/skill_icon';
-import prisma from '@/src/prisma';
+import Footer from '@/app/(ui)/footer';
+import Header from '@/app/(ui)/header';
+import JakeUser from '@/app/(ui)/jake_user';
+import Renderable from '@/app/(ui)/renderable';
+import SkillIcon from '@/app/(ui)/skill_icon';
+import prisma from '@/app/(src)/prisma';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 

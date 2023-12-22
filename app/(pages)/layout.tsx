@@ -4,7 +4,7 @@ import './globals.css';
 
 import { Outfit, Roboto } from 'next/font/google';
 
-import { config, library } from '@fortawesome/fontawesome-svg-core';
+const { library, config } = require('@fortawesome/fontawesome-svg-core');
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import {
   faAws,
@@ -23,6 +23,20 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { Providers } from './providers';
 config.autoAddCss = false;
+
+library.add(
+  faLinkedin,
+  faUnity,
+  faGithub,
+  faJava,
+  faEnvelope,
+  faFile,
+  faAws,
+  faDocker,
+  faFigma,
+  faJira,
+  faDatabase,
+);
 
 const outfit = Outfit({
   subsets: ['latin'],
@@ -48,20 +62,6 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  library.add(
-    faLinkedin,
-    faUnity,
-    faGithub,
-    faJava,
-    faEnvelope,
-    faFile,
-    faAws,
-    faDocker,
-    faFigma,
-    faJira,
-    faDatabase,
-  );
-
   return (
     <html lang="en" className="dark">
       <body className={`${outfit.variable} ${roboto.variable}`}>

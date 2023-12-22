@@ -1,4 +1,4 @@
-import Renderable from '@/app/ui/renderable';
+import Renderable from '@/app/(ui)/renderable';
 import { Popover, PopoverTrigger, PopoverContent } from '@nextui-org/popover';
 import { Button } from '@nextui-org/button';
 import { Renderable as RenderableData, Skill } from '@prisma/client';

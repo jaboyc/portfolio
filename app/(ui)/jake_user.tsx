@@ -1,4 +1,4 @@
-import prisma from '@/src/prisma';
+import prisma from '@/app/(src)/prisma';
 import { Link } from '@nextui-org/link';
 import { User } from '@nextui-org/user';
 

@@ -1,9 +1,9 @@
-import prisma from '@/src/prisma';
+import prisma from '@/app/(src)/prisma';
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope, faFile } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button } from '@nextui-org/button';
-import { Card, CardBody, CardHeader, CardFooter } from '@nextui-org/card';
+import { Card, CardBody, CardFooter, CardHeader } from '@nextui-org/card';
 import { Divider } from '@nextui-org/divider';
 import { Image } from '@nextui-org/image';
 import { Link } from '@nextui-org/link';
@@ -16,11 +16,11 @@ import {
 import { Spacer } from '@nextui-org/spacer';
 import groupBy from 'lodash/groupBy';
 import moment from 'moment';
-import Footer from './ui/footer';
-import JakeUser from './ui/jake_user';
-import Renderable from './ui/renderable';
-import SkillChip from './ui/skill_chip';
-import SkillIcon from './ui/skill_icon';
+import Footer from '@/app/(ui)/footer';
+import JakeUser from '@/app/(ui)/jake_user';
+import Renderable from '@/app/(ui)/renderable';
+import SkillChip from '@/app/(ui)/skill_chip';
+import SkillIcon from '@/app/(ui)/skill_icon';
 
 export const revalidate = 60 * 60 * 12;
 

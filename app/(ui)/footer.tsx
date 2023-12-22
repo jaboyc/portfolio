@@ -1,4 +1,4 @@
-import prisma from '@/src/prisma';
+import prisma from '@/app/(src)/prisma';
 import { Link } from '@nextui-org/link';
 
 export default async function Footer() {
