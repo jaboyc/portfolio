@@ -205,6 +205,7 @@ export default async function Home() {
                         renderable={project.renderable}
                         width={200}
                         height={200}
+                        fit="cover"
                       />
                     </a>
                   </div>
