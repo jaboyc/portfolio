@@ -16,11 +16,11 @@ import {
 import { Spacer } from '@nextui-org/spacer';
 import groupBy from 'lodash/groupBy';
 import moment from 'moment';
-import Footer from '@/app/(ui)/footer';
-import JakeUser from '@/app/(ui)/jake_user';
-import Renderable from '@/app/(ui)/renderable';
-import SkillChip from '@/app/(ui)/skill_chip';
-import SkillIcon from '@/app/(ui)/skill_icon';
+import Footer from '@/app/(ui)/widgets/footer';
+import JakeUser from '@/app/(ui)/widgets/jake_user';
+import Renderable from '@/app/(ui)/widgets/renderable';
+import SkillChip from '@/app/(ui)/widgets/skill_chip';
+import SkillIcon from '@/app/(ui)/widgets/skill_icon';
 
 export const revalidate = 60 * 60 * 12;
 
