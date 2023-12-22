@@ -66,7 +66,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
             width={350}
             color={'white'}
           />
-          <div className="flex flex-col flex-grow basis-[650px] gap-4">
+          <div className="flex flex-col flex-grow basis-[650px] gap-4 items-start">
             <h2 className="text-start text-white">{project.name}</h2>
             <p className="text-primary">{project.shortDescription}</p>
             <JakeUser foregroundColor="white" />

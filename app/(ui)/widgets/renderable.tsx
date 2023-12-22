@@ -1,8 +1,7 @@
 import { IconName, IconPrefix } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Image } from '@nextui-org/image';
 import { Renderable } from '@prisma/client';
-import NextImage from 'next/image';
+import Image from 'next/image';
 
 export default function Renderable({
   renderable,
@@ -22,7 +21,6 @@ export default function Renderable({
   if (renderable.src && renderable.alt) {
     return (
       <Image
-        as={NextImage}
         src={renderable.src}
         alt={renderable.alt}
         width={width * 4}
