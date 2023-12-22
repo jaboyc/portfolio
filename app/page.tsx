@@ -142,6 +142,7 @@ export default async function Home() {
                   startContent={<FontAwesomeIcon icon={faFile} />}
                   href="/JakeBoychenkoResume.pdf"
                   target="_blank"
+                  className="text-black"
                 >
                   Download Resume
                 </Button>
@@ -192,7 +193,7 @@ export default async function Home() {
                   shadow="none"
                 >
                   <CardHeader>
-                    <h6 className="text-primary text-center w-full">
+                    <h6 className="text-gray-800 text-center w-full">
                       {category}
                     </h6>
                   </CardHeader>
