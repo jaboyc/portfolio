@@ -1,5 +1,6 @@
 import Footer from '@/app/ui/footer';
 import Header from '@/app/ui/header';
+import JakeUser from '@/app/ui/jake_user';
 import Renderable from '@/app/ui/renderable';
 import prisma from '@/src/prisma';
 import { PrismaClient } from '@prisma/client';
@@ -56,15 +57,17 @@ export default async function Page({ params }: Props) {
             renderable={blogPost.renderable}
             width={350}
             color={'white'}
+            className="rounded-lg"
           />
-          <div className="flex flex-col flex-grow basis-[650px]">
-            <h2 className="text-white">{blogPost.title}</h2>
+          <div className="flex flex-col flex-grow basis-[450px] gap-2">
+            <h5 className="text-white">{blogPost.title}</h5>
             <p className="text-primary">{blogPost.subtitle}</p>
+            <JakeUser foregroundColor="white" />
           </div>
         </div>
       </section>
       <section className="bg-white items-center">
-        <p className="subbody">{blogPost.body}</p>
+        <p className="text-gray-800">{blogPost.body}</p>
       </section>
       <Footer />
     </>

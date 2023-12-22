@@ -1,6 +1,8 @@
 import Footer from '@/app/ui/footer';
 import Header from '@/app/ui/header';
+import JakeUser from '@/app/ui/jake_user';
 import Renderable from '@/app/ui/renderable';
+import SkillIcon from '@/app/ui/skill_icon';
 import prisma from '@/src/prisma';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
@@ -39,6 +41,11 @@ export default async function Page({ params }: { params: { slug: string } }) {
     },
     include: {
       renderable: true,
+      skills: {
+        include: {
+          renderable: true,
+        },
+      },
     },
   });
 
@@ -56,14 +63,20 @@ export default async function Page({ params }: { params: { slug: string } }) {
             width={350}
             color={'white'}
           />
-          <div className="flex flex-col flex-grow basis-[650px]">
+          <div className="flex flex-col flex-grow basis-[650px] gap-4">
             <h2 className="text-start text-white">{project.name}</h2>
             <p className="text-primary">{project.shortDescription}</p>
+            <JakeUser foregroundColor="white" />
+            <div className="flex flex-wrap gap-2">
+              {project.skills.map((skill) => {
+                return <SkillIcon key={skill.id} skill={skill} />;
+              })}
+            </div>
           </div>
         </div>
       </section>
       <section className="bg-white">
-        <p className="subbody">{project.body}</p>
+        <p className="text-gray-800">{project.body}</p>
       </section>
       <Footer />
     </>

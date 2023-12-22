@@ -1,15 +1,26 @@
+import prisma from '@/src/prisma';
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope, faFile } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { PrismaClient } from '@prisma/client';
+import { Button } from '@nextui-org/button';
+import { Card, CardBody, CardHeader, CardFooter } from '@nextui-org/card';
+import { Divider } from '@nextui-org/divider';
+import { Image } from '@nextui-org/image';
+import { Link } from '@nextui-org/link';
+import {
+  Navbar,
+  NavbarBrand,
+  NavbarContent,
+  NavbarItem,
+} from '@nextui-org/navbar';
+import { Spacer } from '@nextui-org/spacer';
 import groupBy from 'lodash/groupBy';
 import moment from 'moment';
-import Script from 'next/script';
+import Footer from './ui/footer';
+import JakeUser from './ui/jake_user';
 import Renderable from './ui/renderable';
 import SkillChip from './ui/skill_chip';
 import SkillIcon from './ui/skill_icon';
-import Footer from './ui/footer';
-import prisma from '@/src/prisma';
 
 export const revalidate = 60 * 60 * 12;
 
@@ -55,6 +66,7 @@ export default async function Home() {
         orderBy: {
           createdTime: 'desc',
         },
+        take: 3,
         include: {
           renderable: true,
         },
@@ -64,56 +76,58 @@ export default async function Home() {
   const skillsByCategory = groupBy(resume.skills, (skill) => skill.category);
 
   return (
-    <main>
-      <header className="sticky top-0 z-[100] flex bg-background px-16 py-6 justify-center">
-        <h5 className="text-primary text-center text-[22px] md:text-[28px] transition hover:brightness-[120%]">
-          <a className="no-underline" href="#">
-            JAKE BOYCHENKO
-          </a>
-        </h5>
-        <nav className="md:flex hidden flex-grow gap-6">
-          <div className="grow"></div>
-          <a
-            className="no-underline font-outfit text-[24px] font-thin tracking-widest text-[#ffffffc0] transition hover:text-white"
-            href="#skills"
-          >
-            Skills
-          </a>
-          <a
-            className="no-underline font-outfit text-[24px] font-thin tracking-widest text-[#ffffffc0] transition hover:text-white"
-            href="#experience"
-          >
-            Experience
-          </a>
-          <a
-            className="no-underline font-outfit text-[24px] font-thin tracking-widest text-[#ffffffc0] transition hover:text-white"
-            href="#blog"
-          >
-            Blog
-          </a>
-        </nav>
-      </header>
+    <>
+      <Navbar className="p-2" maxWidth="full">
+        <NavbarBrand className="justify-center sm:justify-start">
+          <Link href="#" size="lg" className="uppercase font-bold">
+            <h6>Jake Boychenko</h6>
+          </Link>
+        </NavbarBrand>
+        <NavbarContent className="hidden sm:flex gap-4">
+          <Spacer className="flex flex-grow" />
+          <NavbarItem>
+            <Link color="foreground" href="#skills">
+              Skills
+            </Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Link color="foreground" href="#experience">
+              Experience
+            </Link>
+          </NavbarItem>
+          <NavbarItem>
+            <Link color="foreground" href="#blog">
+              Blog
+            </Link>
+          </NavbarItem>
+        </NavbarContent>
+      </Navbar>
       <main>
         <section>
-          <h1 className="text-white uppercase text-center">
-            Innovative Software Engineer with a Flair for{' '}
-            <span className="text-primary">Full-Stack Solutions</span>
+          <h1 className="text-center">
+            INNOVATIVE SOFTWARE ENGINEER WITH A FLAIR FOR{' '}
+            <span className="bg-gradient-to-tr from-[#b18d73] to-[#f7835e] text-transparent bg-clip-text">
+              FULL-STACK SOLUTIONS
+            </span>
           </h1>
-          <div className="flex flex-wrap gap-4 justify-center items-center">
-            <Renderable
-              renderable={resume.renderable}
-              width={288}
-              className="flex-shrink-0 rounded-full "
+          <div className="flex flex-wrap gap-4 p-8 items-center justify-center">
+            <Image
+              alt="Jake's Profile Pic"
+              src="/profile_pic.jpg"
+              width={240}
+              height={240}
+              radius="full"
+              disableAnimation={true}
             />
-            <div className="flex flex-col gap-4 basis-[500px] flex-grow justify-center">
-              <p className="text-white">
-                As a Full-Stack Web and Mobile Developer, I&apos;ve carved a
-                niche in creating sophisticated and user-centric solutions. My
+            <div className="flex-grow basis-[500px] flex flex-col gap-4">
+              <p>
+                As a Full-Stack Web and Mobile Developer, &apos;e carved a niche
+                in creating sophisticated and user-centric solutions. My
                 expertise lies in seamlessly integrating front-end and back-end
                 technologies, primarily leveraging the versatility of Flutter
                 for mobile applications and modern web frameworks for robust web
                 development. My journey includes crafting dynamic full-stack
-                solutions, where I&apos;ve utilized technologies like Flutter,
+                solutions, where &apos;e utilized technologies like Flutter,
                 Firebase, and various web technologies to deliver
                 high-performance applications. This experience is bolstered by
                 my ability to analyze and transition complex data structures,
@@ -121,38 +135,43 @@ export default async function Home() {
                 platforms. Passionate about coding and design, I aim to bridge
                 functionality with innovation in every project I undertake.
               </p>
-              <div className="flex flex-wrap gap-4 items-center">
-                <a href="/JakeBoychenkoResume.pdf" target="_blank">
-                  <button className="flex bg-primary rounded-xl px-3 py-2 gap-2 items-center transition hover:brightness-110 hover:scale-[101%]">
-                    <FontAwesomeIcon height={16} icon={faFile} />
-                    <p className="button-text text-black">Download Resume</p>
-                  </button>
-                </a>
-                <a href={resume.linkedInUrl} target="_blank">
-                  <button className="flex bg-[#0077B5] text-white rounded-xl px-3 py-2 gap-2 items-center hover:brightness-110 hover:scale-[101%]">
-                    <FontAwesomeIcon
-                      height={16}
-                      icon={faLinkedin}
-                      color="white"
-                    />
-                    <p className="text-white">Connect</p>
-                  </button>
-                </a>
-                <a
-                  className="flex gap-2 items-center text-primary-soft hover:brightness-110"
-                  href={`mailto:${resume.email}`}
+              <div className="flex flex-wrap justify-start gap-4">
+                <Button
+                  as={Link}
+                  color="primary"
+                  startContent={<FontAwesomeIcon icon={faFile} />}
+                  href="/JakeBoychenkoResume.pdf"
+                  target="_blank"
                 >
-                  <FontAwesomeIcon height={16} icon={faEnvelope} />
+                  Download Resume
+                </Button>
+                <Button
+                  as={Link}
+                  className="bg-[#0077b5]"
+                  startContent={<FontAwesomeIcon icon={faLinkedin} />}
+                  href={resume.linkedInUrl}
+                  target="_blank"
+                >
+                  Connect
+                </Button>
+                <Button
+                  as={Link}
+                  variant="light"
+                  color="primary"
+                  startContent={<FontAwesomeIcon icon={faEnvelope} />}
+                  href={`mailto:${resume.email}`}
+                  target="_blank"
+                >
                   {resume.email}
-                </a>
+                </Button>
               </div>
             </div>
           </div>
         </section>
         <section className="bg-white">
-          <h5 id="skills" className="text-black text-center scroll-m-28">
+          <h2 id="skills" className="text-black text-center scroll-m-28">
             Skills
-          </h5>
+          </h2>
           <p className="text-black">
             As a seasoned software engineer, I am deeply committed to honing my
             existing expertise while remaining open and eager to embrace new
@@ -161,196 +180,206 @@ export default async function Home() {
             solutions. In this ever-evolving field, I believe that continuous
             learning is key, and I am always on the lookout for fresh challenges
             and opportunities to expand my horizons. Below is a snapshot of the
-            skills I&apos;ve mastered and the new frontiers I&apos;m exploring.
+            skills &apos;e mastered and the new frontiers &apos; exploring.
           </p>
-          <div className="flex flex-wrap justify-center items-center gap-x-16 gap-y-2">
+          <div className="flex flex-wrap justify-center items-center gap-4">
             {Object.keys(skillsByCategory).map((category) => {
               const skills = skillsByCategory[category];
               return (
-                <div key={category} className="flex flex-col w-[440px] gap-2">
-                  <h6 className="text-primary text-center pt-8">{category}</h6>
-                  <div className="flex flex-wrap gap-2 justify-center items-center">
-                    {skills.map((skill) => (
-                      <SkillChip key={skill.id} skill={skill} />
-                    ))}
-                  </div>
-                </div>
+                <Card
+                  key={category}
+                  className="basis-[550px] border bg-slate-50"
+                  shadow="none"
+                >
+                  <CardHeader>
+                    <h6 className="text-primary text-center w-full">
+                      {category}
+                    </h6>
+                  </CardHeader>
+                  <CardBody>
+                    <div className="flex flex-wrap gap-2 justify-center items-center">
+                      {skills.map((skill) => (
+                        <SkillChip key={skill.id} skill={skill} />
+                      ))}
+                    </div>
+                  </CardBody>
+                </Card>
               );
             })}
           </div>
         </section>
         <section>
-          <h5 id="experience" className="text-center text-white scroll-m-28">
+          <h2 className="text-center scroll-m-28" id="experience">
             Experience
-          </h5>
+          </h2>
           <h6 className="text-center text-primary">Projects</h6>
-          <p className="text-white">
+          <p>
             Explore my portfolio of distinctive projects, each showcasing a
             unique blend of technical skills and creative solutions. From
             dynamic mobile apps to comprehensive web platforms, these projects
             represent my commitment to excellence in full-stack development and
             user-centric design.
           </p>
-          <div className="flex flex-wrap py-4 gap-x-2 gap-y-8">
+          <div className="flex flex-wrap gap-4">
             {resume.projects.map((project) => {
               const projectUrl = `/project/${project.slug}`;
               return (
-                <div
-                  key={project.slug}
-                  className="flex flex-wrap flex-grow basis-[550px] justify-center items-center gap-4 "
-                >
-                  <div className="min-w-[200px]">
-                    <a href={projectUrl}>
-                      <Renderable
-                        renderable={project.renderable}
-                        width={200}
-                        height={200}
-                        fit="cover"
-                      />
-                    </a>
-                  </div>
-                  <div className="flex flex-col flex-grow basis-[220px] gap-2 px-2 py-4">
-                    <h6 className="text-white text-e">{project.name}</h6>
-                    <p className="subbody text-white">
-                      {project.shortDescription}
-                    </p>
-                    <a className="text-primary" href={projectUrl}>
-                      Learn More
-                    </a>
-                    <div className="flex-grow" />
-                    <div className="flex flex-row gap-2">
-                      {project.skills.map((skill) => {
-                        return <SkillIcon key={skill.id} skill={skill} />;
-                      })}
+                <Card key={projectUrl} className="flex-grow basis-[550px]">
+                  <CardBody>
+                    <div className="flex flex-wrap gap-4 justify-center">
+                      <Link href={projectUrl} className="min-w-[200px]">
+                        <Renderable
+                          renderable={project.renderable}
+                          width={200}
+                          height={200}
+                          fit="cover"
+                          className="rounded-lg"
+                        />
+                      </Link>
+                      <div className="flex flex-col flex-grow basis-[380px] gap-2">
+                        <Link href={projectUrl}>
+                          <h6>{project.name}</h6>
+                        </Link>
+                        <p className="text-small text-white">
+                          {project.shortDescription}
+                        </p>
+                        <div className="flex-grow" />
+                        <div className="flex flex-row gap-2">
+                          {project.skills.map((skill) => {
+                            return <SkillIcon key={skill.id} skill={skill} />;
+                          })}
+                          <div className="flex-grow" />
+                          <Button as={Link} href={projectUrl}>
+                            Learn More
+                          </Button>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
+                  </CardBody>
+                </Card>
               );
             })}
           </div>
-          <h6 className="text-center text-primary pt-10">Work History</h6>
-          <p className="text-white">
+          <Divider />
+          <h6 className="text-center text-primary">Work History</h6>
+          <p>
             Welcome to a snapshot of my professional path! As a passionate
-            Software Engineer, I&apos;ve navigated diverse roles, from enhancing
+            Software Engineer, &apos;e navigated diverse roles, from enhancing
             mission-critical government applications to pioneering mobile app
             development and immersive game design. Each role has been a stepping
             stone, enriching my skillset in full-stack development,
             cross-functional collaboration, and innovative problem-solving.
-            Below, you&apos;ll find a detailed chronicle of my experiences that
+            Below, yo&apos;l find a detailed chronicle of my experiences that
             collectively shape my expertise in mobile and web development.
           </p>
-          <div className="flex flex-col gap-14 py-8">
-            {resume.workHistory.map((workHistory) => {
-              const timeline = `${moment(workHistory.startTime).format(
-                'MMM yyyy',
-              )} - ${
-                workHistory.endTime
-                  ? moment(workHistory.endTime).format('MMM yyyy')
-                  : 'Present'
-              }`;
-              return (
-                <div
-                  key={workHistory.id}
-                  className="flex flex-row items-start gap-4"
-                >
-                  <p className="hidden md:block w-[220px] flex-shrink-0 pt-6 text-white font-bold">
-                    {timeline}
-                  </p>
-                  <div className="flex flex-col items-start gap-4">
-                    <div className="flex flex-row items-center justify-center gap-4">
-                      <div className="flex justify-center items-center rounded-full p-2 bg-white">
-                        <Renderable
-                          renderable={workHistory.renderable}
-                          width={36}
-                          height={36}
-                        />
-                      </div>
-                      <div className="flex flex-col items-start flex-grow">
-                        <h6 className="text-white">{workHistory.name}</h6>
-                        <p className="text-white opacity-95">
-                          {workHistory.title}
-                        </p>
-                        <p className="block md:hidden text-white font-bold">
-                          {timeline}
-                        </p>
-                      </div>
+          {resume.workHistory.map((workHistory) => {
+            const timeline = `${moment(workHistory.startTime).format(
+              'MMM yyyy',
+            )} - ${
+              workHistory.endTime
+                ? moment(workHistory.endTime).format('MMM yyyy')
+                : 'Present'
+            }`;
+
+            return (
+              <Card key={workHistory.id}>
+                <CardHeader>
+                  <div className="flex flex-row gap-4 items-center">
+                    <div className="bg-white p-2 rounded-full">
+                      <Renderable
+                        renderable={workHistory.renderable}
+                        width={40}
+                      />
                     </div>
-                    <ul className="px-4">
-                      {workHistory.lineItems.map((lineItem) => (
-                        <li
-                          key={lineItem.substring(3)}
-                          className="subbody text-white"
-                        >
-                          {lineItem}
-                        </li>
-                      ))}
-                    </ul>
-                    <div className="flex flex-row justify-start gap-2">
-                      {workHistory.skills.map((skill) => {
-                        return <SkillIcon key={skill.id} skill={skill} />;
-                      })}
+                    <div className="flex-grow flex flex-col gap-0">
+                      <h6>{workHistory.name}</h6>
+                      <p className="text-primary">{workHistory.title}</p>
+                      <p className="text-tiny">{timeline}</p>
                     </div>
                   </div>
-                </div>
-              );
-            })}
-          </div>
+                </CardHeader>
+                <Divider />
+                <CardBody>
+                  <ul className="pl-4">
+                    {workHistory.lineItems.map((lineItem, i) => (
+                      <li key={i}>{lineItem}</li>
+                    ))}
+                  </ul>
+                </CardBody>
+              </Card>
+            );
+          })}
         </section>
         <section className="bg-white">
-          <h5 id="blog" className="text-black text-center scroll-m-28">
+          <h2 id="blog" className="text-black text-center scroll-m-28">
             Blog
-          </h5>
+          </h2>
           <p className="text-black">
             Dive into my world of software engineering, where I share the
             essence of my project development, my approach to architectural
             design, and the secrets to maintaining lasting client relationships.
             This blog is a window into my professional journey, offering a blend
             of technical expertise and client-centric strategies. Whether
-            you&apos;re in the tech industry or simply curious, there&apos;s
+            yo&apos;e in the tech industry or simply curious, ther&apos;
             something here for you.
           </p>
-          <div className="flex flex-col items-center justify-center px-4 py-2 gap-8">
+          <div className="flex flex-col gap-4">
             {resume.blogPost.map((blogPost) => {
-              const blogPostUrl = `/blog/${blogPost.slug}`;
+              const blogUrl = `/blog/${blogPost.slug}`;
               return (
-                <div
+                <Card
                   key={blogPost.slug}
-                  className="flex flex-wrap items-center justify-center gap-6"
+                  className="bg-slate-50 border"
+                  shadow="none"
                 >
-                  <div className="min-w-[250px] flex-shrink-0">
-                    <a href={blogPostUrl}>
-                      <Renderable
-                        renderable={blogPost.renderable}
-                        width={280}
-                        height={200}
-                        fit="cover"
-                      />
-                    </a>
-                  </div>
-                  <div className="flex flex-col flex-grow basis-[450px] gap-2">
-                    <h6>{blogPost.title}</h6>
-                    <p className="text-primary">{blogPost.subtitle}</p>
-                    <p className="subbody">{blogPost.shortDescription}</p>
-                    <div className="flex-grow" />
-                    <a href={blogPostUrl}>Read More</a>
-                  </div>
-                </div>
+                  <CardBody>
+                    <div className="flex flex-wrap gap-4 justify-center items-center">
+                      <Link href={blogUrl}>
+                        <Renderable
+                          renderable={blogPost.renderable}
+                          width={250}
+                          height={160}
+                          fit="cover"
+                          className="rounded-lg"
+                        />
+                      </Link>
+                      <div className="flex-grow basis-[250px] flex flex-col gap-2 items-start">
+                        <Link href={blogUrl}>
+                          <h6 className="text-gray-800 font-semibold">
+                            {blogPost.title}
+                          </h6>
+                        </Link>
+                        <p className="text-primary text-small">
+                          {blogPost.subtitle}
+                        </p>
+                        <JakeUser foregroundColor={'black'} />
+                      </div>
+                    </div>
+                  </CardBody>
+                  <Divider className="bg-gray-200" />
+                  <CardFooter>
+                    <div className="flex flex-col gap-4 items-center">
+                      <p className="text-black text-small">
+                        {blogPost.shortDescription}
+                      </p>
+                      <Button
+                        variant="bordered"
+                        color="primary"
+                        as={Link}
+                        href={blogUrl}
+                        style={{ maxWidth: '200px' }}
+                      >
+                        Read More
+                      </Button>
+                    </div>
+                  </CardFooter>
+                </Card>
               );
             })}
           </div>
         </section>
       </main>
       <Footer />
-
-      <Script
-        src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"
-        strategy="beforeInteractive"
-      />
-      <Script
-        src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"
-        strategy="beforeInteractive"
-      />
-      <Script src="/scripts/tippy_init.js" strategy="afterInteractive" />
-    </main>
+    </>
   );
 }

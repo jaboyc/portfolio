@@ -9,12 +9,8 @@ import { config, library } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { fab } from '@fortawesome/free-brands-svg-icons';
+import { Providers } from './providers';
 config.autoAddCss = false;
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-});
 
 const outfit = Outfit({
   subsets: ['latin'],
@@ -42,15 +38,13 @@ export default function RootLayout({
   library.add(fas, fab);
 
   return (
-    <html lang="en">
+    <html lang="en" className="dark">
       <Script
         src="https://kit.fontawesome.com/fbadad80a0.js"
         crossOrigin="anonymous"
       />
-      <body
-        className={`bg-background ${inter.variable} ${outfit.variable} ${roboto.variable}`}
-      >
-        {children}
+      <body className={`${outfit.variable} ${roboto.variable}`}>
+        <Providers>{children}</Providers>
         <Analytics />
       </body>
     </html>

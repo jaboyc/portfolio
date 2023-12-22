@@ -7,7 +7,8 @@
   --foreground-soft-color: #ffffffc1;
   --primary-color: #b18d73;
   --primary-soft-color: #c8c2b5;
-  --background-color: #0a0f22;
+  --accent-color: #f7835e;
+  --background-color: #313142;
 }
 
 h1 {
@@ -23,28 +24,20 @@ h5 {
 }
 
 h6 {
-  @apply font-roboto font-bold text-[22px] tracking-wide;
+  @apply font-outfit font-bold text-[22px] tracking-wide;
 }
 
 p {
-  @apply font-roboto text-[19px] font-thin;
+  @apply font-roboto text-[19px] font-thin leading-snug;
 }
 
-.subbody {
-  @apply font-roboto text-[19px] tracking-tight font-thin leading-tight;
+button > p,
+a[role='button'] {
+  @apply font-outfit font-normal;
 }
 
-button {
-  @apply font-inter font-bold text-[18px];
-}
-
-a:not(:has(button)) {
-  @apply text-primary underline transition hover:brightness-110;
-}
-
-.button-text,
-a > button > p {
-  @apply font-inter font-bold text-[15px];
+nav a {
+  @apply font-outfit text-[18px] font-thin tracking-widest;
 }
 
 ul {

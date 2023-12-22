@@ -1,13 +1,14 @@
+import { Navbar, NavbarBrand } from '@nextui-org/navbar';
+import { Link } from '@nextui-org/link';
+
 export default function Header() {
   return (
-    <header className="sticky top-0 z-[100] flex bg-background px-16 py-3 justify-center">
-      <nav>
-        <h5 className="text-primary text-center text-[20px] md:text-[24px] transition hover:brightness-[120%]">
-          <a className="no-underline" href="/">
-            JAKE BOYCHENKO
-          </a>
-        </h5>
-      </nav>
-    </header>
+    <Navbar className="p-2" maxWidth="full">
+      <NavbarBrand>
+        <Link href="/" className="uppercase font-bold w-full justify-center">
+          <h6>Jake Boychenko</h6>
+        </Link>
+      </NavbarBrand>
+    </Navbar>
   );
 }
