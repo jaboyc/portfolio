@@ -1,14 +1,14 @@
-import type { Metadata } from 'next';
-import './globals.css';
-import Script from 'next/script';
 import { Analytics } from '@vercel/analytics/react';
+import type { Metadata } from 'next';
+import Script from 'next/script';
+import './globals.css';
 
-import { Inter, Outfit, Roboto } from 'next/font/google';
+import { Outfit, Roboto } from 'next/font/google';
 
 import { config, library } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
-import { fas } from '@fortawesome/free-solid-svg-icons';
 import { fab } from '@fortawesome/free-brands-svg-icons';
+import { fas } from '@fortawesome/free-solid-svg-icons';
 import { Providers } from './providers';
 config.autoAddCss = false;
 
@@ -17,8 +17,9 @@ const outfit = Outfit({
   variable: '--font-outfit',
 });
 
-const roboto = Outfit({
+const roboto = Roboto({
   subsets: ['latin'],
+  weight: ['300', '500'],
   variable: '--font-roboto',
 });
 

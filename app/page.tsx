@@ -121,13 +121,13 @@ export default async function Home() {
             />
             <div className="flex-grow basis-[500px] flex flex-col gap-4">
               <p>
-                As a Full-Stack Web and Mobile Developer, &apos;e carved a niche
-                in creating sophisticated and user-centric solutions. My
+                As a Full-Stack Web and Mobile Developer, I&apos;ve carved a
+                niche in creating sophisticated and user-centric solutions. My
                 expertise lies in seamlessly integrating front-end and back-end
                 technologies, primarily leveraging the versatility of Flutter
                 for mobile applications and modern web frameworks for robust web
                 development. My journey includes crafting dynamic full-stack
-                solutions, where &apos;e utilized technologies like Flutter,
+                solutions, where I&apos;ve utilized technologies like Flutter,
                 Firebase, and various web technologies to deliver
                 high-performance applications. This experience is bolstered by
                 my ability to analyze and transition complex data structures,
@@ -180,7 +180,7 @@ export default async function Home() {
             solutions. In this ever-evolving field, I believe that continuous
             learning is key, and I am always on the lookout for fresh challenges
             and opportunities to expand my horizons. Below is a snapshot of the
-            skills &apos;e mastered and the new frontiers &apos; exploring.
+            skills I&apos;ve mastered and the new frontiers I&apos;m exploring.
           </p>
           <div className="flex flex-wrap justify-center items-center gap-4">
             {Object.keys(skillsByCategory).map((category) => {
@@ -264,12 +264,12 @@ export default async function Home() {
           <h6 className="text-center text-primary">Work History</h6>
           <p>
             Welcome to a snapshot of my professional path! As a passionate
-            Software Engineer, &apos;e navigated diverse roles, from enhancing
+            Software Engineer, I&apos;ve navigated diverse roles, from enhancing
             mission-critical government applications to pioneering mobile app
             development and immersive game design. Each role has been a stepping
             stone, enriching my skillset in full-stack development,
             cross-functional collaboration, and innovative problem-solving.
-            Below, yo&apos;l find a detailed chronicle of my experiences that
+            Below, you&apos;ll find a detailed chronicle of my experiences that
             collectively shape my expertise in mobile and web development.
           </p>
           {resume.workHistory.map((workHistory) => {
@@ -320,7 +320,7 @@ export default async function Home() {
             design, and the secrets to maintaining lasting client relationships.
             This blog is a window into my professional journey, offering a blend
             of technical expertise and client-centric strategies. Whether
-            yo&apos;e in the tech industry or simply curious, ther&apos;
+            you&apos;re in the tech industry or simply curious, there&apos;s
             something here for you.
           </p>
           <div className="flex flex-col gap-4">
