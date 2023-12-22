@@ -1,14 +1,26 @@
 import { Analytics } from '@vercel/analytics/react';
 import type { Metadata } from 'next';
-import Script from 'next/script';
 import './globals.css';
 
 import { Outfit, Roboto } from 'next/font/google';
 
 import { config, library } from '@fortawesome/fontawesome-svg-core';
 import '@fortawesome/fontawesome-svg-core/styles.css';
-import { fab } from '@fortawesome/free-brands-svg-icons';
-import { fas } from '@fortawesome/free-solid-svg-icons';
+import {
+  faAws,
+  faDocker,
+  faFigma,
+  faGithub,
+  faJava,
+  faJira,
+  faLinkedin,
+  faUnity,
+} from '@fortawesome/free-brands-svg-icons';
+import {
+  faDatabase,
+  faEnvelope,
+  faFile,
+} from '@fortawesome/free-solid-svg-icons';
 import { Providers } from './providers';
 config.autoAddCss = false;
 
@@ -36,14 +48,22 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  library.add(fas, fab);
+  library.add(
+    faLinkedin,
+    faUnity,
+    faGithub,
+    faJava,
+    faEnvelope,
+    faFile,
+    faAws,
+    faDocker,
+    faFigma,
+    faJira,
+    faDatabase,
+  );
 
   return (
     <html lang="en" className="dark">
-      <Script
-        src="https://kit.fontawesome.com/fbadad80a0.js"
-        crossOrigin="anonymous"
-      />
       <body className={`${outfit.variable} ${roboto.variable}`}>
         <Providers>{children}</Providers>
         <Analytics />
