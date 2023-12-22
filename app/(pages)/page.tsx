@@ -6,6 +6,7 @@ import { Button } from '@nextui-org/button';
 import { Card, CardBody, CardFooter, CardHeader } from '@nextui-org/card';
 import { Divider } from '@nextui-org/divider';
 import { Image } from '@nextui-org/image';
+import NextImage from 'next/image';
 import { Link } from '@nextui-org/link';
 import {
   Navbar,
@@ -112,6 +113,7 @@ export default async function Home() {
           </h1>
           <div className="flex flex-wrap gap-4 p-8 items-center justify-center">
             <Image
+              as={NextImage}
               alt="Jake's Profile Pic"
               src="/profile_pic.jpg"
               width={240}

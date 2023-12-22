@@ -11,7 +11,11 @@ export default function SkillIcon({
   return (
     <Popover showArrow>
       <PopoverTrigger>
-        <Button isIconOnly style={{ background: skill.color }}>
+        <Button
+          isIconOnly
+          style={{ background: skill.color }}
+          aria-label={skill.name}
+        >
           <Renderable
             renderable={skill.renderable}
             width={21}

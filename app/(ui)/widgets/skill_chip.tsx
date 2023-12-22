@@ -14,7 +14,7 @@ export default function SkillChip({
         <Button
           className={`${skill.color == 'white' ? 'border-2 border-black' : ''}`}
           radius="full"
-          name={skill.name}
+          aria-label={skill.name}
           style={{ background: skill.color }}
           startContent={
             <Renderable

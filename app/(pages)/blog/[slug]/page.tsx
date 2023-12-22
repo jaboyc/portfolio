@@ -61,7 +61,7 @@ export default async function Page({ params }: Props) {
             color={'white'}
             className="rounded-lg"
           />
-          <div className="flex flex-col flex-grow basis-[450px] gap-2">
+          <div className="flex flex-col flex-grow basis-[450px] gap-2 items-start">
             <h5 className="text-white">{blogPost.title}</h5>
             <p className="text-primary">{blogPost.subtitle}</p>
             <JakeUser foregroundColor="white" />
