@@ -4,39 +4,10 @@ import './globals.css';
 
 import { Outfit, Roboto } from 'next/font/google';
 
-const { library, config } = require('@fortawesome/fontawesome-svg-core');
-import '@fortawesome/fontawesome-svg-core/styles.css';
-import {
-  faAws,
-  faDocker,
-  faFigma,
-  faGithub,
-  faJava,
-  faJira,
-  faLinkedin,
-  faUnity,
-} from '@fortawesome/free-brands-svg-icons';
-import {
-  faDatabase,
-  faEnvelope,
-  faFile,
-} from '@fortawesome/free-solid-svg-icons';
 import { Providers } from './providers';
-config.autoAddCss = false;
 
-library.add(
-  faLinkedin,
-  faUnity,
-  faGithub,
-  faJava,
-  faEnvelope,
-  faFile,
-  faAws,
-  faDocker,
-  faFigma,
-  faJira,
-  faDatabase,
-);
+import initIcons from '@/app/(ui)/util/fa_icons';
+initIcons();
 
 const outfit = Outfit({
   subsets: ['latin'],

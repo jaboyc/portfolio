@@ -7,6 +7,9 @@ import prisma from '@/app/(src)/prisma';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
+import initIcons from '@/app/(ui)/util/fa_icons';
+initIcons();
+
 export const revalidate = 60 * 60 * 12;
 
 type Props = {
