@@ -19,15 +19,20 @@ h2 {
   @apply font-outfit font-bold text-[30px] md:text-[38px] tracking-wider;
 }
 
+h4 {
+  @apply font-outfit font-bold text-[32px] text-primary tracking-wider leading-relaxed;
+}
+
 h5 {
-  @apply font-outfit font-bold text-[29px] tracking-wider;
+  @apply font-outfit font-bold text-[29px] tracking-wider leading-relaxed pt-3;
 }
 
 h6 {
-  @apply font-outfit font-bold text-[22px] tracking-wide;
+  @apply font-outfit font-bold text-[22px] tracking-wide leading-relaxed;
 }
 
-p {
+p,
+li {
   @apply font-roboto text-[19px] font-thin leading-snug;
 }
 
@@ -41,6 +46,7 @@ nav a {
 }
 
 ul {
+  @apply pl-4 py-2;
   list-style-type: disc;
 }
 

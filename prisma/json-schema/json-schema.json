@@ -19,12 +19,6 @@
             "null"
           ]
         },
-        "pack": {
-          "type": [
-            "string",
-            "null"
-          ]
-        },
         "iconPack": {
           "type": [
             "string",

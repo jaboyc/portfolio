@@ -104,11 +104,16 @@ export default async function Home() {
       </Navbar>
       <main>
         <section>
-          <h1 className="text-center">
-            INNOVATIVE SOFTWARE ENGINEER WITH A FLAIR FOR{' '}
-            <span className="bg-gradient-to-tr from-[#b18d73] to-[#f7835e] text-transparent bg-clip-text">
-              FULL-STACK SOLUTIONS
-            </span>
+          <h1 className="text-center uppercase">
+            Innovative Engineer Crafting the Future of{' '}
+            <span className="bg-gradient-to-tr from-[#b18d73] to-[#755443] text-transparent bg-clip-text">
+              Mobile
+            </span>{' '}
+            and{' '}
+            <span className="bg-gradient-to-tr from-[#f7835e] to-[#e65728] text-transparent bg-clip-text">
+              Web
+            </span>{' '}
+            Applications
           </h1>
           <div className="flex flex-wrap gap-4 p-8 items-center justify-center">
             <Image
@@ -120,19 +125,13 @@ export default async function Home() {
             />
             <div className="flex-grow basis-[500px] flex flex-col gap-4">
               <p>
-                As a Full-Stack Web and Mobile Developer, I&apos;ve carved a
-                niche in creating sophisticated and user-centric solutions. My
-                expertise lies in seamlessly integrating front-end and back-end
-                technologies, primarily leveraging the versatility of Flutter
-                for mobile applications and modern web frameworks for robust web
-                development. My journey includes crafting dynamic full-stack
-                solutions, where I&apos;ve utilized technologies like Flutter,
-                Firebase, and various web technologies to deliver
-                high-performance applications. This experience is bolstered by
-                my ability to analyze and transition complex data structures,
-                ensuring a seamless user experience across both web and mobile
-                platforms. Passionate about coding and design, I aim to bridge
-                functionality with innovation in every project I undertake.
+                Seasoned mid-level full-stack software engineer having led the
+                backend of over 5 enterprise projects and building
+                cross-platform apps having over 1,000 installs. Proficient in
+                Flutter, Next.js, and Java backend frameworks, with a proven
+                ability to mentor teams and streamline processes. Committed to
+                leveraging deep technical expertise and a creative approach to
+                deliver impactful solutions.
               </p>
               <div className="flex flex-wrap justify-start gap-4">
                 <Button
@@ -352,7 +351,7 @@ export default async function Home() {
                         <p className="text-primary text-small">
                           {blogPost.subtitle}
                         </p>
-                        <JakeUser foregroundColor={'black'} />
+                        <JakeUser />
                       </div>
                     </div>
                   </CardBody>

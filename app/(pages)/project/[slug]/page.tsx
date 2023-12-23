@@ -6,6 +6,7 @@ import SkillIcon from '@/app/(ui)/widgets/skill_icon';
 import prisma from '@/app/(src)/prisma';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+import Markdown from 'react-markdown';
 
 import initIcons from '@/app/(ui)/util/fa_icons';
 initIcons();
@@ -70,7 +71,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
           <div className="flex flex-col flex-grow basis-[650px] gap-4 items-start">
             <h2 className="text-start text-white">{project.name}</h2>
             <p className="text-primary">{project.shortDescription}</p>
-            <JakeUser foregroundColor="white" />
+            <JakeUser isDark />
             <div className="flex-grow" />
             <div className="flex flex-wrap gap-2">
               {project.skills.map((skill) => {
@@ -81,7 +82,12 @@ export default async function Page({ params }: { params: { slug: string } }) {
         </div>
       </section>
       <section className="bg-white">
-        <p className="text-gray-800">{project.body}</p>
+        <Markdown
+          className={'text-black'}
+          components={{ h1: 'h4', h2: 'h5', h3: 'h6' }}
+        >
+          {project.body}
+        </Markdown>
       </section>
       <Footer />
     </>

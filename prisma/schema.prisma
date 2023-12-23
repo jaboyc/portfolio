@@ -19,7 +19,6 @@ model Renderable {
   id       Int     @id @default(autoincrement())
   src      String?
   alt      String?
-  pack     String?
   iconPack String?
   icon     String?
 
