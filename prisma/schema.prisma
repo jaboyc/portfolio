@@ -5,11 +5,6 @@ generator client {
   provider = "prisma-client-js"
 }
 
-generator jsonSchema {
-  provider              = "prisma-json-schema-generator"
-  includeRequiredFields = "true"
-}
-
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
@@ -22,38 +17,60 @@ model Renderable {
   iconPack String?
   icon     String?
 
-  skills      Skill[]
-  projects    Project[]
-  resumes     Resume[]
-  workHistory WorkHistory[]
-  blogPost    BlogPost[]
+  skills        Skill[]
+  projects      Project[]
+  resumes       Resume[]
+  workHistories WorkHistory[]
+  blogPosts     BlogPost[]
+  linkTemplates LinkTemplate[]
+}
+
+model LinkTemplate {
+  name            String     @id
+  color           String
+  foregroundColor String
+  renderable      Renderable @relation(fields: [renderableId], references: [id])
+  renderableId    Int
+
+  links Link[]
+}
+
+model Link {
+  id               Int          @id @default(autoincrement())
+  url              String
+  linkTemplate     LinkTemplate @relation(fields: [linkTemplateName], references: [name])
+  linkTemplateName String
+
+  projects Project[]
 }
 
 model Resume {
-  id           Int           @id @default(autoincrement())
+  id           Int        @id @default(autoincrement())
   linkedInUrl  String
   email        String
-  skills       Skill[]
-  projects     Project[]
-  workHistory  WorkHistory[]
-  renderable   Renderable    @relation(fields: [renderableId], references: [id])
+  renderable   Renderable @relation(fields: [renderableId], references: [id])
   renderableId Int
-  blogPost     BlogPost[]
+
+  skills        Skill[]
+  projects      Project[]
+  workHistories WorkHistory[]
+  blogPosts     BlogPost[]
 }
 
 model Skill {
-  id              Int           @id @default(autoincrement())
-  resume          Resume?       @relation(fields: [resumeId], references: [id])
+  id              Int        @id @default(autoincrement())
+  resume          Resume?    @relation(fields: [resumeId], references: [id])
   resumeId        Int?
   category        String
   name            String
   description     String
-  renderable      Renderable    @relation(fields: [renderableId], references: [id])
+  renderable      Renderable @relation(fields: [renderableId], references: [id])
   renderableId    Int
   color           String
   foregroundColor String
-  projects        Project[]
-  workHistories   WorkHistory[]
+
+  projects      Project[]
+  workHistories WorkHistory[]
 }
 
 model Project {
@@ -68,6 +85,7 @@ model Project {
   resume           Resume     @relation(fields: [resumeId], references: [id])
   resumeId         Int
   keywords         String[]
+  links            Link[]
 }
 
 model WorkHistory {

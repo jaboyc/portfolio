@@ -9,6 +9,7 @@ import { notFound } from 'next/navigation';
 import Markdown from 'react-markdown';
 
 import initIcons from '@/app/(ui)/util/fa_icons';
+import LinkRenderer from '@/app/(ui)/widgets/link_renderer';
 initIcons();
 
 export const revalidate = 60 * 60 * 12;
@@ -50,6 +51,15 @@ export default async function Page({ params }: { params: { slug: string } }) {
           renderable: true,
         },
       },
+      links: {
+        include: {
+          linkTemplate: {
+            include: {
+              renderable: true,
+            },
+          },
+        },
+      },
     },
   });
 
@@ -76,6 +86,11 @@ export default async function Page({ params }: { params: { slug: string } }) {
             <div className="flex flex-wrap gap-2">
               {project.skills.map((skill) => {
                 return <SkillIcon key={skill.id} skill={skill} />;
+              })}
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {project.links.map((link) => {
+                return <LinkRenderer key={link.id} link={link} />;
               })}
             </div>
           </div>

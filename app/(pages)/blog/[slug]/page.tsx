@@ -7,6 +7,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 
 import initIcons from '@/app/(ui)/util/fa_icons';
+import Markdown from 'react-markdown';
 initIcons();
 
 export const revalidate = 60 * 60 * 12;
@@ -69,7 +70,12 @@ export default async function Page({ params }: Props) {
         </div>
       </section>
       <section className="bg-white items-center">
-        <p className="text-gray-800">{blogPost.body}</p>
+        <Markdown
+          className={'text-black'}
+          components={{ h1: 'h4', h2: 'h5', h3: 'h6' }}
+        >
+          {blogPost.body}
+        </Markdown>
       </section>
       <Footer />
     </>

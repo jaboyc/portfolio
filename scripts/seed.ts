@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 
 async function main() {
-  await setBody('chess-plus-plus');
+  await setKeywords('client-relationships');
 }
 
 function importFile(filePath: string): string {
@@ -15,7 +15,7 @@ function importFile(filePath: string): string {
 async function setKeywords(slug: string) {
   const keywords = importFile('scripts/keywords.txt').split('\n');
 
-  await prisma.project.update({
+  await prisma.blogPost.update({
     where: {
       slug: slug,
     },
@@ -28,7 +28,7 @@ async function setKeywords(slug: string) {
 async function setBody(slug: string) {
   const body = importFile('scripts/body.txt');
 
-  await prisma.project.update({
+  await prisma.blogPost.update({
     where: {
       slug: slug,
     },

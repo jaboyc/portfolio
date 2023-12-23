@@ -49,7 +49,7 @@ export default async function Home() {
           },
         },
       },
-      workHistory: {
+      workHistories: {
         orderBy: {
           id: 'asc',
         },
@@ -62,7 +62,7 @@ export default async function Home() {
           },
         },
       },
-      blogPost: {
+      blogPosts: {
         orderBy: {
           createdTime: 'desc',
         },
@@ -271,7 +271,7 @@ export default async function Home() {
             Below, you&apos;ll find a detailed chronicle of my experiences that
             collectively shape my expertise in mobile and web development.
           </p>
-          {resume.workHistory.map((workHistory) => {
+          {resume.workHistories.map((workHistory) => {
             const timeline = `${moment(workHistory.startTime).format(
               'MMM yyyy',
             )} - ${
@@ -323,7 +323,7 @@ export default async function Home() {
             something here for you.
           </p>
           <div className="flex flex-col gap-4">
-            {resume.blogPost.map((blogPost) => {
+            {resume.blogPosts.map((blogPost) => {
               const blogUrl = `/blog/${blogPost.slug}`;
               return (
                 <Card
