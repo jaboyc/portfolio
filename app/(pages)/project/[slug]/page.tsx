@@ -119,7 +119,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
           </h5>
           <div className="flex flex-wrap justify-center items-center">
             {project.relatedBlogPosts.map((blogPost) => (
-              <BlogPostCard blogPost={blogPost} isDark />
+              <BlogPostCard key={blogPost.slug} blogPost={blogPost} isDark />
             ))}
           </div>
         </section>

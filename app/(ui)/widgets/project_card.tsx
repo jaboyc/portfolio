@@ -3,7 +3,7 @@ import { Link } from '@nextui-org/link';
 import { Project, Renderable as RenderableData, Skill } from '@prisma/client';
 import Renderable from './renderable';
 import SkillIcon from './skill_icon';
-import { Button } from '@nextui-org/react';
+import { Button } from '@nextui-org/button';
 
 export default function ProjectCard({
   project,

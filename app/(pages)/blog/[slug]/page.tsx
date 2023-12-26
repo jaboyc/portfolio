@@ -97,7 +97,7 @@ export default async function Page({ params }: Props) {
           </h5>
           <div className="flex flex-wrap justify-center items-center">
             {blogPost.relatedProjects.map((project) => (
-              <ProjectCard project={project} />
+              <ProjectCard key={project.slug} project={project} />
             ))}
           </div>
         </section>
