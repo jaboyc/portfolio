@@ -14,40 +14,11 @@ const config: Config = {
         outfit: ['var(--font-outfit)'],
         roboto: ['var(--font-roboto)'],
       },
+      colors: {
+        primary: 'var(--primary-color)',
+      },
     },
   },
-  darkMode: 'media',
-  plugins: [
-    nextui({
-      themes: {
-        light: {
-          colors: {
-            background: '#ffffff',
-            foreground: '#000000',
-            content1: {
-              DEFAULT: '#dfdfdf',
-              foreground: '#000000',
-            },
-            primary: {
-              DEFAULT: '#b18d73',
-            },
-          },
-        },
-        dark: {
-          colors: {
-            background: '#0a0f22',
-            foreground: '#ffffff',
-            content1: {
-              DEFAULT: '#1e2232',
-              foreground: '#ffffff',
-            },
-            primary: {
-              DEFAULT: '#b18d73',
-            },
-          },
-        },
-      },
-    }),
-  ],
+  plugins: [nextui()],
 };
 export default config;

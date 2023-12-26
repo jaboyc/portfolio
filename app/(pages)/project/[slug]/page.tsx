@@ -76,7 +76,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
   return (
     <>
       <Header />
-      <section>
+      <section className="dark">
         <div className="flex flex-wrap gap-4 items-center justify-center">
           <Renderable
             renderable={project.renderable}
@@ -85,9 +85,9 @@ export default async function Page({ params }: { params: { slug: string } }) {
             className="rounded-lg"
           />
           <div className="flex flex-col flex-grow basis-[650px] gap-4 items-start">
-            <h2 className="text-start text-white">{project.name}</h2>
+            <h2 className="text-start">{project.name}</h2>
             <p className="text-primary">{project.shortDescription}</p>
-            <JakeUser isDark />
+            <JakeUser />
             <div className="flex-grow" />
             <div className="flex flex-wrap gap-2">
               {project.skills.map((skill) => {
@@ -102,13 +102,12 @@ export default async function Page({ params }: { params: { slug: string } }) {
           </div>
         </div>
       </section>
-      <section className="bg-white">
-        <Markdown
-          className={'text-black'}
-          components={{ h1: 'h4', h2: 'h5', h3: 'h6' }}
-        >
-          {project.body}
-        </Markdown>
+      <section className="light">
+        <div>
+          <Markdown components={{ h1: 'h4', h2: 'h5', h3: 'h6' }}>
+            {project.body}
+          </Markdown>
+        </div>
       </section>
       {project.relatedBlogPosts.length > 0 && (
         <section>
@@ -119,7 +118,7 @@ export default async function Page({ params }: { params: { slug: string } }) {
           </h5>
           <div className="flex flex-wrap justify-center items-center">
             {project.relatedBlogPosts.map((blogPost) => (
-              <BlogPostCard key={blogPost.slug} blogPost={blogPost} isDark />
+              <BlogPostCard key={blogPost.slug} blogPost={blogPost} />
             ))}
           </div>
         </section>

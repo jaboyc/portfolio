@@ -76,17 +76,31 @@ export default async function Page({ params }: Props) {
           <div className="flex flex-col flex-grow basis-[450px] gap-2 items-start">
             <h5 className="text-white">{blogPost.title}</h5>
             <p className="text-primary">{blogPost.subtitle}</p>
-            <JakeUser isDark />
+            <JakeUser />
           </div>
         </div>
       </section>
-      <section className="bg-white items-center">
-        <Markdown
-          className={'text-black'}
-          components={{ h1: 'h4', h2: 'h5', h3: 'h6' }}
-        >
-          {blogPost.body}
-        </Markdown>
+      <section className="light">
+        <div>
+          <Markdown
+            components={{
+              h1(props) {
+                const { node, ...rest } = props;
+                return <h4 className="pt-3 pb-1" {...rest} />;
+              },
+              h2(props) {
+                const { node, ...rest } = props;
+                return <h5 className="pt-3 pb-1" {...rest} />;
+              },
+              h3(props) {
+                const { node, ...rest } = props;
+                return <h6 className="pt-3 pb-1" {...rest} />;
+              },
+            }}
+          >
+            {blogPost.body}
+          </Markdown>
+        </div>
       </section>
       {blogPost.relatedProjects.length > 0 && (
         <section>

@@ -167,11 +167,11 @@ export default async function Home() {
             </div>
           </div>
         </section>
-        <section className="bg-white">
-          <h2 id="skills" className="text-black text-center scroll-m-28">
+        <section className="light">
+          <h2 id="skills" className="text-center scroll-m-28">
             Skills
           </h2>
-          <p className="text-black">
+          <p>
             Harnessing a versatile technology stack, the following skills
             highlight my proficiency across various programming languages,
             frameworks, and tools, essential for delivering innovative and
@@ -181,15 +181,9 @@ export default async function Home() {
             {Object.keys(skillsByCategory).map((category) => {
               const skills = skillsByCategory[category];
               return (
-                <Card
-                  key={category}
-                  className="basis-[550px] border bg-slate-50"
-                  shadow="none"
-                >
+                <Card key={category} className="card basis-[550px] border">
                   <CardHeader>
-                    <h6 className="text-gray-800 text-center w-full">
-                      {category}
-                    </h6>
+                    <h6 className="text-center w-full">{category}</h6>
                   </CardHeader>
                   <CardBody>
                     <div className="flex flex-wrap gap-2 justify-center items-center">
@@ -203,7 +197,7 @@ export default async function Home() {
             })}
           </div>
         </section>
-        <section>
+        <section className="dark">
           <h2 className="text-center scroll-m-28" id="experience">
             Experience
           </h2>
@@ -216,7 +210,7 @@ export default async function Home() {
           </p>
           <div className="flex flex-wrap gap-4 justify-center">
             {resume.projects.map((project) => {
-              return ProjectCard({ project: project });
+              return <ProjectCard key={project.slug} project={project} />;
             })}
           </div>
           <Divider />
@@ -237,7 +231,7 @@ export default async function Home() {
             }`;
 
             return (
-              <Card key={workHistory.id}>
+              <Card key={workHistory.id} className="card">
                 <CardHeader>
                   <div className="flex flex-row gap-4 items-center">
                     <div className="bg-white p-2 rounded-full">
@@ -265,11 +259,11 @@ export default async function Home() {
             );
           })}
         </section>
-        <section className="bg-white">
-          <h2 id="blog" className="text-black text-center scroll-m-28">
+        <section className="light">
+          <h2 id="blog" className="text-center scroll-m-28">
             Blog
           </h2>
-          <p className="text-black">
+          <p>
             Dive into my world of software engineering, where I share the
             essence of my project development, my approach to architectural
             design, and the secrets to maintaining lasting client relationships.

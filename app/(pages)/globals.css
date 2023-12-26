@@ -3,12 +3,43 @@
 @tailwind utilities;
 
 :root {
-  --foreground-color: #fff;
-  --foreground-soft-color: #ffffffc1;
   --primary-color: #b18d73;
   --primary-soft-color: #c8c2b5;
   --accent-color: #f7835e;
-  --background-color: #313142;
+}
+
+.dark {
+  --foreground-color: white;
+  --background-color: #0a0f22;
+  --card-color: #1e2232;
+  --card-border-width: 1px;
+  --card-border-color: rgba(55, 65, 81, 0.5);
+
+  color: var(--foreground-color);
+  background-color: var(--background-color);
+}
+
+.light {
+  --foreground-color: black;
+  --background-color: white;
+  --card-color: white;
+  --card-border-width: 1px;
+  --card-border-color: rgba(55, 65, 81, 0.2);
+
+  color: var(--foreground-color);
+  background-color: var(--background-color);
+}
+
+section {
+  @apply flex flex-col gap-4 px-8 py-12 md:px-16 lg:px-24;
+}
+
+.card {
+  color: var(--foreground-color);
+  background-color: var(--card-color);
+  border: var(--card-border-width);
+  border-color: var(--card-border-color);
+  border-style: solid;
 }
 
 h1 {
@@ -20,15 +51,15 @@ h2 {
 }
 
 h4 {
-  @apply font-outfit font-bold text-[32px] text-primary tracking-wider leading-relaxed;
+  @apply font-outfit font-bold text-[32px] tracking-wider;
 }
 
 h5 {
-  @apply font-outfit font-bold text-[29px] tracking-wider leading-relaxed pt-3;
+  @apply font-outfit font-bold text-[29px] tracking-wider;
 }
 
 h6 {
-  @apply font-outfit font-bold text-[22px] tracking-wide leading-relaxed;
+  @apply font-outfit font-bold text-[22px] tracking-wide;
 }
 
 p,
@@ -45,6 +76,10 @@ nav a {
   @apply font-outfit text-[18px] font-thin tracking-widest;
 }
 
+hr {
+  background-color: var(--foreground-color);
+}
+
 ul {
   @apply pl-4 py-2;
   list-style-type: disc;
@@ -53,8 +88,4 @@ ul {
 ol {
   @apply pl-4 py-2;
   list-style-type: decimal;
-}
-
-section {
-  @apply flex flex-col gap-4 px-8 py-12 md:px-16 lg:px-24;
 }

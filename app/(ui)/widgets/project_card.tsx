@@ -15,7 +15,10 @@ export default function ProjectCard({
 }) {
   const projectUrl = `/project/${project.slug}`;
   return (
-    <Card key={projectUrl} className="flex-grow basis-[550px] max-w-[750px]">
+    <Card
+      key={projectUrl}
+      className="card flex-grow basis-[550px] max-w-[750px]"
+    >
       <CardBody>
         <div className="flex flex-wrap gap-4 justify-center">
           <Link href={projectUrl} className="min-w-[200px]">
@@ -31,7 +34,7 @@ export default function ProjectCard({
             <Link href={projectUrl}>
               <h6>{project.name}</h6>
             </Link>
-            <p className="text-small text-white">{project.shortDescription}</p>
+            <p className="text-small">{project.shortDescription}</p>
             <div className="flex-grow" />
             <div className="flex flex-row gap-2">
               {project.skills.map((skill) => {

@@ -8,19 +8,14 @@ import Renderable from './renderable';
 
 export default function BlogPostCard({
   blogPost,
-  isDark,
 }: {
   blogPost: BlogPost & { renderable: RenderableData };
-  isDark?: boolean;
 }) {
   const blogUrl = `/blog/${blogPost.slug}`;
   return (
     <Card
       key={blogPost.slug}
-      className={`${
-        isDark == true ? '' : 'bg-slate-50 border'
-      }  flex-grow basis-[850px] max-w-[950px]`}
-      shadow={isDark == true ? 'md' : 'none'}
+      className={`card flex-grow basis-[850px] max-w-[950px]`}
     >
       <CardBody>
         <div className="flex flex-wrap gap-4 justify-center items-center">
@@ -35,29 +30,17 @@ export default function BlogPostCard({
           </Link>
           <div className="flex-grow basis-[250px] flex flex-col gap-2 items-start">
             <Link href={blogUrl}>
-              <h6
-                className={`${
-                  isDark == true ? 'text-gray-200' : 'text-gray-800'
-                } font-semibold`}
-              >
-                {blogPost.title}
-              </h6>
+              <h6 className={`font-semibold`}>{blogPost.title}</h6>
             </Link>
-            <p className="text-primary text-small">{blogPost.subtitle}</p>
-            <JakeUser isDark={isDark} />
+            <p className="font-thin text-small">{blogPost.subtitle}</p>
+            <JakeUser />
           </div>
         </div>
       </CardBody>
-      <Divider className="bg-gray-200" />
+      <Divider />
       <CardFooter>
         <div className="flex flex-col gap-4 items-center">
-          <p
-            className={`${
-              isDark == true ? 'text-gray-200' : 'text-gray-800'
-            } text-small`}
-          >
-            {blogPost.shortDescription}
-          </p>
+          <p className={`text-small`}>{blogPost.shortDescription}</p>
           <Button
             variant="bordered"
             color="primary"
