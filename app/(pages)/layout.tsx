@@ -7,6 +7,7 @@ import { Outfit, Roboto } from 'next/font/google';
 import { Providers } from './providers';
 
 import initIcons from '@/app/(ui)/util/fa_icons';
+import Script from 'next/script';
 initIcons();
 
 const outfit = Outfit({
@@ -38,6 +39,21 @@ export default function RootLayout({
       <body className={`${outfit.variable} ${roboto.variable}`}>
         <Providers>{children}</Providers>
         <Analytics />
+        {process.env.NODE_ENV == 'production' && (
+          <>
+            <Script
+              async
+              src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GA_ID}`}
+            />
+            <Script id="google-analytics">
+              {`window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+
+                gtag('config', '${process.env.GA_ID}');`}
+            </Script>
+          </>
+        )}
       </body>
     </html>
   );
