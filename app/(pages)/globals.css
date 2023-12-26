@@ -50,6 +50,11 @@ ul {
   list-style-type: disc;
 }
 
+ol {
+  @apply pl-4 py-2;
+  list-style-type: decimal;
+}
+
 section {
   @apply flex flex-col gap-4 px-8 py-12 md:px-16 lg:px-24;
 }

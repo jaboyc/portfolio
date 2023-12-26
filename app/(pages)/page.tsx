@@ -172,14 +172,10 @@ export default async function Home() {
             Skills
           </h2>
           <p className="text-black">
-            As a seasoned software engineer, I am deeply committed to honing my
-            existing expertise while remaining open and eager to embrace new
-            technologies. My journey has been marked by a relentless pursuit of
-            technical excellence, blending proven methodologies with innovative
-            solutions. In this ever-evolving field, I believe that continuous
-            learning is key, and I am always on the lookout for fresh challenges
-            and opportunities to expand my horizons. Below is a snapshot of the
-            skills I&apos;ve mastered and the new frontiers I&apos;m exploring.
+            Harnessing a versatile technology stack, the following skills
+            highlight my proficiency across various programming languages,
+            frameworks, and tools, essential for delivering innovative and
+            robust software solutions.
           </p>
           <div className="flex flex-wrap justify-center items-center gap-4">
             {Object.keys(skillsByCategory).map((category) => {
@@ -213,11 +209,10 @@ export default async function Home() {
           </h2>
           <h6 className="text-center text-primary">Projects</h6>
           <p>
-            Explore my portfolio of distinctive projects, each showcasing a
-            unique blend of technical skills and creative solutions. From
-            dynamic mobile apps to comprehensive web platforms, these projects
-            represent my commitment to excellence in full-stack development and
-            user-centric design.
+            Below is a curated selection of personal and professional projects
+            that demonstrate my full-stack development capabilities,
+            problem-solving skills, and commitment to building impactful and
+            user-centered applications.
           </p>
           <div className="flex flex-wrap gap-4">
             {resume.projects.map((project) => {
@@ -262,14 +257,10 @@ export default async function Home() {
           <Divider />
           <h6 className="text-center text-primary">Work History</h6>
           <p>
-            Welcome to a snapshot of my professional path! As a passionate
-            Software Engineer, I&apos;ve navigated diverse roles, from enhancing
-            mission-critical government applications to pioneering mobile app
-            development and immersive game design. Each role has been a stepping
-            stone, enriching my skillset in full-stack development,
-            cross-functional collaboration, and innovative problem-solving.
-            Below, you&apos;ll find a detailed chronicle of my experiences that
-            collectively shape my expertise in mobile and web development.
+            My career journey showcases a progressive track record of leading,
+            developing, and optimizing software solutions. Here&amp;s an
+            overview of my roles, responsibilities, and achievements in the
+            field of software engineering.
           </p>
           {resume.workHistories.map((workHistory) => {
             const timeline = `${moment(workHistory.startTime).format(

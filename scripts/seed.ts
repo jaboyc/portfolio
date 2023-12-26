@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 
 async function main() {
-  await setKeywords('client-relationships');
+  await setBody('portfolio');
 }
 
 function importFile(filePath: string): string {
@@ -26,7 +26,7 @@ async function setKeywords(slug: string) {
 }
 
 async function setBody(slug: string) {
-  const body = importFile('scripts/body.txt');
+  const body = importFile('scripts/body.md');
 
   await prisma.blogPost.update({
     where: {
