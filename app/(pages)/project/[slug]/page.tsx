@@ -104,7 +104,22 @@ export default async function Page({ params }: { params: { slug: string } }) {
       </section>
       <section className="light">
         <div>
-          <Markdown components={{ h1: 'h4', h2: 'h5', h3: 'h6' }}>
+          <Markdown
+            components={{
+              h1(props) {
+                const { node, ...rest } = props;
+                return <h4 className="pt-3 pb-1" {...rest} />;
+              },
+              h2(props) {
+                const { node, ...rest } = props;
+                return <h5 className="pt-3 pb-1" {...rest} />;
+              },
+              h3(props) {
+                const { node, ...rest } = props;
+                return <h6 className="pt-3 pb-1" {...rest} />;
+              },
+            }}
+          >
             {project.body}
           </Markdown>
         </div>
