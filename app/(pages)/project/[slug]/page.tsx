@@ -1,14 +1,15 @@
+import prisma from '@/app/(src)/prisma';
 import Footer from '@/app/(ui)/widgets/footer';
 import Header from '@/app/(ui)/widgets/header';
 import JakeUser from '@/app/(ui)/widgets/jake_user';
 import Renderable from '@/app/(ui)/widgets/renderable';
 import SkillIcon from '@/app/(ui)/widgets/skill_icon';
-import prisma from '@/app/(src)/prisma';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Markdown from 'react-markdown';
 
 import initIcons from '@/app/(ui)/util/fa_icons';
+import BlogPostCard from '@/app/(ui)/widgets/blog_post_card';
 import LinkRenderer from '@/app/(ui)/widgets/link_renderer';
 initIcons();
 
@@ -60,6 +61,11 @@ export default async function Page({ params }: { params: { slug: string } }) {
           },
         },
       },
+      relatedBlogPosts: {
+        include: {
+          renderable: true,
+        },
+      },
     },
   });
 
@@ -104,6 +110,20 @@ export default async function Page({ params }: { params: { slug: string } }) {
           {project.body}
         </Markdown>
       </section>
+      {project.relatedBlogPosts.length > 0 && (
+        <section>
+          <h5 className="text-center">
+            {project.relatedBlogPosts.length == 1
+              ? 'Related Blog Post'
+              : 'Related Blog Posts'}
+          </h5>
+          <div className="flex flex-wrap justify-center items-center">
+            {project.relatedBlogPosts.map((blogPost) => (
+              <BlogPostCard blogPost={blogPost} isDark />
+            ))}
+          </div>
+        </section>
+      )}
       <Footer />
     </>
   );

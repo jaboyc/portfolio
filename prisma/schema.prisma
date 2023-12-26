@@ -86,6 +86,7 @@ model Project {
   resumeId         Int
   keywords         String[]
   links            Link[]
+  relatedBlogPosts BlogPost[]
 }
 
 model WorkHistory {
@@ -114,4 +115,5 @@ model BlogPost {
   resume           Resume     @relation(fields: [resumeId], references: [id])
   resumeId         Int
   keywords         String[]
+  relatedProjects  Project[]
 }

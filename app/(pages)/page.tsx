@@ -1,11 +1,13 @@
 import prisma from '@/app/(src)/prisma';
+import Footer from '@/app/(ui)/widgets/footer';
+import Renderable from '@/app/(ui)/widgets/renderable';
+import SkillChip from '@/app/(ui)/widgets/skill_chip';
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope, faFile } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Button } from '@nextui-org/button';
-import { Card, CardBody, CardFooter, CardHeader } from '@nextui-org/card';
+import { Card, CardBody, CardHeader } from '@nextui-org/card';
 import { Divider } from '@nextui-org/divider';
-import Image from 'next/image';
 import { Link } from '@nextui-org/link';
 import {
   Navbar,
@@ -16,11 +18,9 @@ import {
 import { Spacer } from '@nextui-org/spacer';
 import groupBy from 'lodash/groupBy';
 import moment from 'moment';
-import Footer from '@/app/(ui)/widgets/footer';
-import JakeUser from '@/app/(ui)/widgets/jake_user';
-import Renderable from '@/app/(ui)/widgets/renderable';
-import SkillChip from '@/app/(ui)/widgets/skill_chip';
-import SkillIcon from '@/app/(ui)/widgets/skill_icon';
+import Image from 'next/image';
+import ProjectCard from '../(ui)/widgets/project_card';
+import BlogPostCard from '../(ui)/widgets/blog_post_card';
 
 export const revalidate = 60 * 60 * 12;
 
@@ -214,44 +214,9 @@ export default async function Home() {
             problem-solving skills, and commitment to building impactful and
             user-centered applications.
           </p>
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-4 justify-center">
             {resume.projects.map((project) => {
-              const projectUrl = `/project/${project.slug}`;
-              return (
-                <Card key={projectUrl} className="flex-grow basis-[550px]">
-                  <CardBody>
-                    <div className="flex flex-wrap gap-4 justify-center">
-                      <Link href={projectUrl} className="min-w-[200px]">
-                        <Renderable
-                          renderable={project.renderable}
-                          width={200}
-                          height={200}
-                          fit="cover"
-                          className="rounded-lg"
-                        />
-                      </Link>
-                      <div className="flex flex-col flex-grow basis-[380px] gap-2">
-                        <Link href={projectUrl}>
-                          <h6>{project.name}</h6>
-                        </Link>
-                        <p className="text-small text-white">
-                          {project.shortDescription}
-                        </p>
-                        <div className="flex-grow" />
-                        <div className="flex flex-row gap-2">
-                          {project.skills.map((skill) => {
-                            return <SkillIcon key={skill.id} skill={skill} />;
-                          })}
-                          <div className="flex-grow" />
-                          <Button as={Link} href={projectUrl}>
-                            Learn More
-                          </Button>
-                        </div>
-                      </div>
-                    </div>
-                  </CardBody>
-                </Card>
-              );
+              return ProjectCard({ project: project });
             })}
           </div>
           <Divider />
@@ -313,59 +278,10 @@ export default async function Home() {
             you&apos;re in the tech industry or simply curious, there&apos;s
             something here for you.
           </p>
-          <div className="flex flex-col gap-4">
-            {resume.blogPosts.map((blogPost) => {
-              const blogUrl = `/blog/${blogPost.slug}`;
-              return (
-                <Card
-                  key={blogPost.slug}
-                  className="bg-slate-50 border"
-                  shadow="none"
-                >
-                  <CardBody>
-                    <div className="flex flex-wrap gap-4 justify-center items-center">
-                      <Link href={blogUrl}>
-                        <Renderable
-                          renderable={blogPost.renderable}
-                          width={250}
-                          height={160}
-                          fit="cover"
-                          className="rounded-lg"
-                        />
-                      </Link>
-                      <div className="flex-grow basis-[250px] flex flex-col gap-2 items-start">
-                        <Link href={blogUrl}>
-                          <h6 className="text-gray-800 font-semibold">
-                            {blogPost.title}
-                          </h6>
-                        </Link>
-                        <p className="text-primary text-small">
-                          {blogPost.subtitle}
-                        </p>
-                        <JakeUser />
-                      </div>
-                    </div>
-                  </CardBody>
-                  <Divider className="bg-gray-200" />
-                  <CardFooter>
-                    <div className="flex flex-col gap-4 items-center">
-                      <p className="text-black text-small">
-                        {blogPost.shortDescription}
-                      </p>
-                      <Button
-                        variant="bordered"
-                        color="primary"
-                        as={Link}
-                        href={blogUrl}
-                        style={{ maxWidth: '200px' }}
-                      >
-                        Read More
-                      </Button>
-                    </div>
-                  </CardFooter>
-                </Card>
-              );
-            })}
+          <div className="flex flex-wrap gap-4 items-stretch justify-center">
+            {resume.blogPosts.map((blogPost) =>
+              BlogPostCard({ blogPost: blogPost }),
+            )}
           </div>
         </section>
       </main>

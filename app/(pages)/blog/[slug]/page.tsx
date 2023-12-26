@@ -8,6 +8,7 @@ import { notFound } from 'next/navigation';
 
 import initIcons from '@/app/(ui)/util/fa_icons';
 import Markdown from 'react-markdown';
+import ProjectCard from '@/app/(ui)/widgets/project_card';
 initIcons();
 
 export const revalidate = 60 * 60 * 12;
@@ -44,6 +45,16 @@ export default async function Page({ params }: Props) {
     },
     include: {
       renderable: true,
+      relatedProjects: {
+        include: {
+          renderable: true,
+          skills: {
+            include: {
+              renderable: true,
+            },
+          },
+        },
+      },
     },
   });
 
@@ -77,6 +88,20 @@ export default async function Page({ params }: Props) {
           {blogPost.body}
         </Markdown>
       </section>
+      {blogPost.relatedProjects.length > 0 && (
+        <section>
+          <h5 className="text-center">
+            {blogPost.relatedProjects.length == 1
+              ? 'Related Project'
+              : 'Related Projects'}
+          </h5>
+          <div className="flex flex-wrap justify-center items-center">
+            {blogPost.relatedProjects.map((project) => (
+              <ProjectCard project={project} />
+            ))}
+          </div>
+        </section>
+      )}
       <Footer />
     </>
   );
