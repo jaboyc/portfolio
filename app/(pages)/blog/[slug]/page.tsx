@@ -13,13 +13,11 @@ initIcons();
 
 export const revalidate = 60 * 60 * 12;
 
-type Props = {
-  params: { slug: string };
-};
-
 export async function generateMetadata({
   params,
-}: Props): Promise<Metadata | null> {
+}: {
+  params: { slug: string };
+}): Promise<Metadata | null> {
   const blogPost = await prisma.blogPost.findUnique({
     where: {
       slug: params.slug,
@@ -38,7 +36,13 @@ export async function generateMetadata({
   };
 }
 
-export default async function Page({ params }: Props) {
+export default async function Page({
+  params,
+  searchParams: { raw },
+}: {
+  params: { slug: string };
+  searchParams: { raw: string };
+}) {
   const blogPost = await prisma.blogPost.findUnique({
     where: {
       slug: params.slug,
@@ -60,6 +64,14 @@ export default async function Page({ params }: Props) {
 
   if (!blogPost) {
     notFound();
+  }
+
+  if (raw == 'true') {
+    return (
+      <>
+        <pre>{blogPost.body}</pre>
+      </>
+    );
   }
 
   return (
@@ -95,6 +107,10 @@ export default async function Page({ params }: Props) {
               h3(props) {
                 const { node, ...rest } = props;
                 return <h6 className="pt-3 pb-1" {...rest} />;
+              },
+              p(props) {
+                const { node, ...rest } = props;
+                return <p className="pt-3 pb-1" {...rest} />;
               },
             }}
           >

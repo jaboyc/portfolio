@@ -15,16 +15,14 @@ initIcons();
 
 export const revalidate = 60 * 60 * 12;
 
-type Props = {
-  params: { slug: string };
-};
-
 export async function generateMetadata({
-  params,
-}: Props): Promise<Metadata | null> {
+  params: { slug },
+}: {
+  params: { slug: string };
+}): Promise<Metadata | null> {
   const project = await prisma.project.findUnique({
     where: {
-      slug: params.slug,
+      slug: slug,
     },
   });
 
@@ -40,10 +38,16 @@ export async function generateMetadata({
   };
 }
 
-export default async function Page({ params }: { params: { slug: string } }) {
+export default async function Page({
+  params: { slug },
+  searchParams: { raw },
+}: {
+  params: { slug: string };
+  searchParams: { raw: string };
+}) {
   const project = await prisma.project.findUnique({
     where: {
-      slug: params.slug,
+      slug: slug,
     },
     include: {
       renderable: true,
@@ -71,6 +75,14 @@ export default async function Page({ params }: { params: { slug: string } }) {
 
   if (!project) {
     notFound();
+  }
+
+  if (raw == 'true') {
+    return (
+      <>
+        <pre>{project.body}</pre>
+      </>
+    );
   }
 
   return (
@@ -117,6 +129,10 @@ export default async function Page({ params }: { params: { slug: string } }) {
               h3(props) {
                 const { node, ...rest } = props;
                 return <h6 className="pt-3 pb-1" {...rest} />;
+              },
+              p(props) {
+                const { node, ...rest } = props;
+                return <p className="pt-3 pb-1" {...rest} />;
               },
             }}
           >

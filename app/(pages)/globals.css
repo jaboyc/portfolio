@@ -81,11 +81,15 @@ hr {
 }
 
 ul {
-  @apply pl-4 py-2;
+  @apply pl-4;
   list-style-type: disc;
 }
 
 ol {
-  @apply pl-4 py-2;
+  @apply pl-4;
   list-style-type: decimal;
+}
+
+code {
+  @apply font-roboto text-[19px] text-primary font-thin tracking-wide;
 }
