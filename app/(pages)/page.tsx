@@ -83,7 +83,7 @@ export default async function Home() {
             <h6>Jake Boychenko</h6>
           </Link>
         </NavbarBrand>
-        <NavbarContent className="hidden sm:flex gap-4">
+        <NavbarContent className="hidden md:flex gap-4" justify="center">
           <Spacer className="flex flex-grow" />
           <NavbarItem>
             <Link color="foreground" href="#skills">
@@ -99,6 +99,20 @@ export default async function Home() {
             <Link color="foreground" href="#blog">
               Blog
             </Link>
+          </NavbarItem>
+        </NavbarContent>
+        <NavbarContent className="hidden sm:flex" justify="end">
+          <NavbarItem>
+            <Button
+              as={Link}
+              color="primary"
+              startContent={<FontAwesomeIcon icon={faFile} />}
+              href="/JakeBoychenkoResume.pdf"
+              target="_blank"
+              variant="bordered"
+            >
+              Download Resume
+            </Button>
           </NavbarItem>
         </NavbarContent>
       </Navbar>
