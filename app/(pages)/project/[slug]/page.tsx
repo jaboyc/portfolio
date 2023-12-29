@@ -38,6 +38,7 @@ export async function generateMetadata({
     description: project.shortDescription,
     authors: [{ name: 'Jake Boychenko' }],
     keywords: project.keywords,
+    metadataBase: new URL('https://www.jakeboychenko.com'),
     openGraph: {
       images: project.renderable.src ?? undefined,
     },
