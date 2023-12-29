@@ -24,6 +24,9 @@ export async function generateMetadata({
     where: {
       slug: slug,
     },
+    include: {
+      renderable: true,
+    },
   });
 
   if (!project) {
@@ -35,6 +38,9 @@ export async function generateMetadata({
     description: project.shortDescription,
     authors: [{ name: 'Jake Boychenko' }],
     keywords: project.keywords,
+    openGraph: {
+      images: project.renderable.src ?? undefined,
+    },
   };
 }
 
