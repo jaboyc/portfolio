@@ -58,9 +58,9 @@ export default async function Page({}: {}) {
             essence of my project development, my approach to architectural
             design, and the secrets to maintaining lasting client relationships.
             This blog is a window into my professional journey, offering a blend
-            of technical expertise and client-centric strategies. Whether you're
-            in the tech industry or simply curious, there's something here for
-            you.
+            of technical expertise and client-centric strategies. Whether
+            you&apos;re in the tech industry or simply curious, there&apos;s
+            something here for you.
           </p>
           {blogPosts.map((blogPost) => BlogPostCard({ blogPost: blogPost }))}
         </div>
