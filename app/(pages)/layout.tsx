@@ -22,10 +22,34 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: 'Jake Boychenko',
-  description: "Jake Boychenko's Portfolio.",
-  icons: {
-    icon: '/favicon.png',
+  title: 'Jake Boychenko - Mobile & Web Developer | Full-Stack Flutter Expert',
+  description:
+    'Explore the portfolio of Jake Boychenko, a dedicated Mobile & Web Developer specializing in full-stack mobile applications with Flutter. Discover my projects, read my insights on my blog, and view my resume to understand my journey and expertise.',
+  authors: [{ name: 'Jake Boychenko' }],
+  keywords: [
+    'software development',
+    'programming',
+    'coding',
+    'tech',
+    'developer',
+    'blog',
+    'flutter',
+    'web',
+    'next.js',
+    'client',
+    'freelancing',
+    'Mobile Developer',
+    'Web Developer',
+    'Mid-Level Developer',
+    'Full-Stack Mobile Applications',
+    'Flutter Developer',
+    'Software Engineer Portfolio',
+    'Developer Blog',
+  ],
+  metadataBase: new URL('https://www.jakeboychenko.com'),
+  icons: '/favicon.png',
+  openGraph: {
+    images: '/favicon.png',
   },
 };
 

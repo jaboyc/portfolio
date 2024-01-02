@@ -1,14 +1,9 @@
 import prisma from '@/app/(src)/prisma';
 import Footer from '@/app/(ui)/widgets/footer';
 import Header from '@/app/(ui)/widgets/header';
-import JakeUser from '@/app/(ui)/widgets/jake_user';
-import Renderable from '@/app/(ui)/widgets/renderable';
 import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
 
 import initIcons from '@/app/(ui)/util/fa_icons';
-import Markdown from 'react-markdown';
-import ProjectCard from '@/app/(ui)/widgets/project_card';
 import BlogPostCard from '@/app/(ui)/widgets/blog_post_card';
 initIcons();
 

@@ -21,6 +21,7 @@ import moment from 'moment';
 import Image from 'next/image';
 import ProjectCard from '../(ui)/widgets/project_card';
 import BlogPostCard from '../(ui)/widgets/blog_post_card';
+import { Metadata } from 'next';
 
 export const revalidate = 60 * 60 * 12;
 
