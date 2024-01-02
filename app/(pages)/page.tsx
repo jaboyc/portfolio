@@ -273,7 +273,7 @@ export default async function Home() {
             );
           })}
         </section>
-        <section className="light">
+        <section className="light flex flex-col justify-center items-center">
           <h2 id="blog" className="text-center scroll-m-28">
             Blog
           </h2>
@@ -291,6 +291,15 @@ export default async function Home() {
               BlogPostCard({ blogPost: blogPost }),
             )}
           </div>
+          <Button
+            variant="solid"
+            color="primary"
+            as={Link}
+            href="/blog"
+            style={{ maxWidth: '200px' }}
+          >
+            View All Blog Posts
+          </Button>
         </section>
       </main>
       <Footer />
